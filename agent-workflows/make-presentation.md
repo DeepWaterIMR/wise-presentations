@@ -14,7 +14,7 @@ Show the proposed overview and wait for explicit approval before expanding `pres
 
 ## Build from stable inputs
 
-Use the live learning hub when choosing a layout; in the template repository, `slide-layouts.yml` is the catalogue source. Give each content slide a declarative sentence title and use the matching named class. When a figure or image is present, give it most of the slide's content area.
+Use the live learning hub when choosing a layout; in the template repository, `slide-layouts.yml` is the catalogue source. Give each content slide a declarative sentence title, without a closing full stop, and use the matching named class. When a figure or image is present, give it most of the slide's content area.
 
 Keep analysis logic in the analysis project or small helpers. Read numbers and figures from `data.summary_file`, named `data.inputs`, or a project data-loading script; never transcribe model results from another presentation.
 

@@ -12,7 +12,7 @@ Shared rules for scientific presentation projects based on this template. Task p
 
 - Do not hard-wrap prose. Keep each paragraph or list item on one source line and use line breaks only for real Markdown structure.
 - Keep visible slide text concise, professional, factual, and free of filler or promotional language.
-- Give each content slide a complete declarative sentence title that states its main message. Title and section slides are exceptions.
+- Give each content slide a complete declarative sentence title that states its main message. Do not end the title with a full stop. Title and section slides are exceptions.
 - Do not invent text, results, or examples merely to fill space in a project presentation.
 - Before editing a presentation, read `README.md`, `slide-plan.md`, and `presentation.yml`, then learn the surrounding analysis project.
 - For a new presentation, discuss audience, duration, purpose, meeting context, one-sentence story, and output filename; use `presentation.html` by default.

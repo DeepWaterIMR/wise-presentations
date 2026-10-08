@@ -8,7 +8,7 @@ A Quarto RevealJS template for scientific presentations. It provides predefined 
 
 ## What the template provides
 
-- Content slides with a full-sentence title that states the main message.
+- Content slides with a full-sentence title that states the main message, without a closing full stop.
 - Layouts that give the primary figure, image, table, or explanation sufficient space.
 - Project-relative interfaces for reading rerenderable analysis outputs.
 - A self-contained HTML presentation that can be shared as one file.

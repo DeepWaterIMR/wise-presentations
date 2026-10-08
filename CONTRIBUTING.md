@@ -4,7 +4,7 @@ Contributions should address a real scientific presentation task while keeping d
 
 ## Add or change a slide layout
 
-1. Give the content slide a declarative sentence title that states its main message.
+1. Give the content slide a declarative sentence title that states its main message, without a closing full stop.
 2. Identify the primary figure, image, table, or explanation and give it sufficient space.
 3. Add or update the marked example in `presentation.qmd`.
 4. Reuse or update `assets/theme.scss`; avoid one-off styling when an existing class can express the composition.
