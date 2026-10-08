@@ -242,3 +242,21 @@ plot_spict_trajectories <- function(spict) {
   )
   abline(h = 1, col = "#6CA67A", lty = 2, lwd = 2)
 }
+
+# Print a named list of ggplots as Quarto panel-tabset tabs. Call inside a
+# `::: {.panel-tabset}` div from a chunk with `#| results: asis`; the list names
+# become the tab titles. Pass `fallback` (a ggplot) to show one tab when the
+# list is empty.
+print_tabs <- function(plots, fallback = NULL) {
+  if (!length(plots)) {
+    cat("  \n### Figure  \n")
+    if (!is.null(fallback)) print(fallback)
+    return(invisible())
+  }
+  for (i in seq_along(plots)) {
+    cat("  \n###", names(plots)[i], "  \n")
+    print(plots[[i]])
+    cat("  \n")
+  }
+  invisible()
+}

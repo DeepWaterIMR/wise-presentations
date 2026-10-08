@@ -197,6 +197,17 @@ entries:
     caveat: Render with ragg because the default Quartz PNG device does not use registered systemfonts fonts.
     source_marker: custom-figure-font
     preview: custom-figure-font.png
+  - id: figure-tabs
+    kind: layout
+    name: Figure tabs
+    category: Figures
+    evidence: Several parallel figures, such as one per fleet, survey, or scenario, of which one is shown at a time
+    use: Keep a set of related figures on one slide as clickable tabs so each can be shown full size during discussion.
+    code: .panel-tabset
+    classes: [figure-tabs, panel-tabset]
+    caveat: Use for supporting or diagnostic figures; keep the figure that carries the main message on its own slide, and keep tab titles short.
+    source_marker: figure-tabs
+    preview: figure-tabs.png
   - id: table-density
     kind: feature
     name: Table density

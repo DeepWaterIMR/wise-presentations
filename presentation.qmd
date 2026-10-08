@@ -734,6 +734,40 @@ graphics::points(0.82, 0.75, pch = 21, bg = "#6ca67a", col = "white", cex = 3, l
 :::
 <!-- catalogue:end custom-figure-font -->
 
+<!-- catalogue:start figure-tabs -->
+## Tabs let one slide hold a set of related figures for discussion {#figure-tabs .figure-tabs .smaller data-section="Figures"}
+
+```{r}
+#| label: figure-tabs-plots
+#| include: false
+tab_plots <- list(
+  "Fuel use" = ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+    ggplot2::geom_point(colour = "#056a89", size = 3) +
+    ggplot2::labs(x = "Weight (1000 lb)", y = "Miles per gallon"),
+  "Power" = ggplot2::ggplot(mtcars, ggplot2::aes(wt, hp)) +
+    ggplot2::geom_point(colour = "#d44f56", size = 3) +
+    ggplot2::labs(x = "Weight (1000 lb)", y = "Horsepower"),
+  "Cylinders" = ggplot2::ggplot(mtcars, ggplot2::aes(factor(cyl), mpg)) +
+    ggplot2::geom_boxplot(fill = "#dcecef", colour = "#056a89") +
+    ggplot2::labs(x = "Cylinders", y = "Miles per gallon")
+)
+```
+
+::: {.panel-tabset}
+```{r}
+#| label: figure-tabs
+#| results: asis
+#| fig-width: 12
+#| fig-height: 5.6
+print_tabs(tab_plots)
+```
+:::
+
+::: {.notes}
+Use `.figure-tabs` when several parallel figures (one per fleet, survey, or scenario) must stay available but only one needs to be on screen. Build a named list of ggplots and print it with `print_tabs()` inside a `.panel-tabset` div and a chunk with `results: asis`; the list names become the tab titles. Click through the tabs during discussion.
+:::
+<!-- catalogue:end figure-tabs -->
+
 <!-- catalogue:start table-density -->
 ## Named table-density modifiers preserve readable text across different column counts {#table-density data-section="Authoring reference"}
 

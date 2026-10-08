@@ -616,3 +616,15 @@ $presentation-font-size-root: 30px;
 .custom-figure-font .figure-panel img {
   max-height: 520px;
 }
+
+/* Figure tabs: a Quarto `.panel-tabset` of figures. Tab titles stay small and
+   wrap onto a second line when there are many tabs; the image height is capped
+   so the figure never pushes the slide past its bottom edge. */
+.reveal .panel-tabset .nav-tabs {
+  flex-wrap: wrap;
+  font-size: 0.62em;
+}
+
+.reveal .panel-tabset .tab-content img {
+  max-height: 600px;
+}
