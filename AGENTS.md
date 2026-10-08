@@ -37,6 +37,7 @@ Shared rules for scientific presentation projects based on this template. Task p
 - Keep detailed explanation in speaker notes.
 - Use captions only when requested. Otherwise avoid `fig-` and `tbl-` chunk-label prefixes and placeholder captions.
 - Use transparent plot, panel, legend, and legend-key backgrounds.
+- Figures must have transparent plot and legend backgrounds; use `transparent_bg()` when a package supplies its own theme.
 - Render inline figures at screen resolution and optimize large external images before embedding them in self-contained HTML.
 - Reserve arbitrary absolute positioning for genuine full-bleed images or small accents; use the supported figure layouts for scientific figures.
 - Keep fragment slides legible in their resting state and ensure transparent intermediate figures fade out before the next one appears.

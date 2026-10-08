@@ -107,6 +107,32 @@ graphics::lines(
   lwd = 7
 )
 grDevices::dev.off()
+conclusion_background_file <- "assets/generated/conclusion-background.png"
+grDevices::png(conclusion_background_file, width = 2000, height = 540, bg = "transparent")
+graphics::par(mar = rep(0, 4))
+graphics::plot.new()
+graphics::plot.window(xlim = c(0, 1), ylim = c(0, 1), xaxs = "i", yaxs = "i")
+conclusion_x <- seq(0, 1, length.out = 200)
+graphics::polygon(
+  c(conclusion_x, 1, 0),
+  c(0.22 + 0.06 * sin(conclusion_x * 5 * pi), 0, 0),
+  col = "#dcecef",
+  border = NA
+)
+graphics::lines(
+  conclusion_x,
+  0.22 + 0.06 * sin(conclusion_x * 5 * pi),
+  col = "#449bcf",
+  lwd = 6
+)
+graphics::lines(
+  conclusion_x,
+  0.34 + 0.20 * conclusion_x + 0.05 * sin(conclusion_x * 9 * pi),
+  col = "#056a89",
+  lwd = 10,
+  lend = "round"
+)
+grDevices::dev.off()
 ggplot2::theme_set(presentation_theme())
 arctic_map <- ggOceanMaps::basemap(
   60,
@@ -399,15 +425,15 @@ The sampler uses bundled `rbb` bathymetry for offline rendering. Use `rcb` when 
 ::: {.edge-figure-panel}
 ```{r}
 #| label: plot-edge-figure
-#| fig-width: 8.6
-#| fig-height: 7.4
+#| fig-width: 6.4
+#| fig-height: 7.5
 #| out-width: 100%
 arctic_map
 ```
 :::
 
 ::: {.notes}
-Use `.edge-figure` for a tall or square figure that should run to the right and lower slide edges. The title and text column remain constrained; recheck the crop when the canvas ratio changes.
+Use `.edge-figure` for a tall or square figure that fills the right half of the slide from top to bottom. The title and text stay in the left column and the section label moves under it. The figure keeps its aspect ratio; stacked fragments in an `.r-stack` inside `.edge-figure-panel` also work.
 :::
 <!-- catalogue:end edge-figure -->
 
@@ -816,3 +842,41 @@ Questions and discussion
 Use `.conclusion-figure` to keep the main conclusion and its supporting visual visible while discussion begins. Do not replace it with a generic thank-you slide.
 :::
 <!-- catalogue:end conclusion-figure -->
+
+<!-- catalogue:start conclusion-cards -->
+## The conclusions can sit on white cards above a graphic that closes the story {#conclusion-cards .conclusion-cards background-image="assets/generated/conclusion-background.png" background-size="contain" background-position="bottom"}
+
+:::: {.conclusion-cards-grid}
+::: {.conclusion-card}
+::: {.card-title}
+Finding
+:::
+
+State the principal empirical result.
+:::
+
+::: {.conclusion-card}
+::: {.card-title}
+Boundary
+:::
+
+State the most important limitation or scope condition.
+:::
+
+::: {.conclusion-card}
+::: {.card-title}
+Implication
+:::
+
+State the decision or next analysis supported by the result.
+:::
+::::
+
+::: {.fragment .fade-in .closing-inline}
+Thank you — questions and discussion
+:::
+
+::: {.notes}
+Use `.conclusion-cards` for the final slide when three short conclusions should stay visible during discussion. The white cards stay readable over the bottom background graphic (`background-image` with `background-size="contain"` and `background-position="bottom"`); keep the content above the graphic. The sign-off appears on the final click.
+:::
+<!-- catalogue:end conclusion-cards -->

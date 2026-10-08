@@ -92,10 +92,10 @@ entries:
     name: Edge figure
     category: Figures
     evidence: A tall or square figure with short accompanying text
-    use: Extend one figure to the slide edge while retaining a narrow interpretation column.
+    use: Fill the right half of the slide, top to bottom, with one figure while the title and short text stay in the left column.
     code: .edge-figure
     classes: [edge-figure, edge-figure-text, edge-figure-panel]
-    caveat: Recheck the crop and title width whenever the slide ratio or centering changes.
+    caveat: The figure keeps its aspect ratio inside the right half (letterboxed, not cropped); a wide figure leaves empty bands, so prefer tall or square figures. Text must fit the left column. Put captions in the left column.
     source_marker: edge-figure
     preview: edge-figure.png
   - id: figure-swap
@@ -230,3 +230,14 @@ entries:
     caveat: Do not replace the conclusion with a generic thank-you slide or a list of unrelated takeaways.
     source_marker: conclusion-figure
     preview: conclusion-figure.png
+  - id: conclusion-cards
+    kind: layout
+    name: Conclusion cards
+    category: Closing
+    evidence: Two to four short conclusions, optionally above a closing graphic
+    use: Keep white cards with the final conclusions visible during discussion, with an optional bottom background graphic and an animated sign-off.
+    code: .conclusion-cards
+    classes: [conclusion-cards, conclusion-cards-grid, conclusion-card, closing-inline]
+    caveat: Keep each card to one or two sentences and keep content above the background graphic so nothing overlaps it.
+    source_marker: conclusion-cards
+    preview: conclusion-cards.png

@@ -242,41 +242,50 @@ $presentation-font-size-root: 30px;
   object-fit: contain;
 }
 
-.edge-figure {
-  position: relative;
+/* Edge figure: the title and text stay in the left column (the section's right
+   padding reserves the figure half); the figure fills the right half of the
+   slide from top to bottom edge. The section watermark moves under the text. */
+.reveal .slides section.edge-figure {
+  padding-right: 52%;
+}
+
+.reveal .slides section.edge-figure[data-section]::after {
+  left: 25%;
 }
 
 .edge-figure-text {
   font-size: 0.86em;
-  max-width: 29%;
-  padding-top: 0.8rem;
 }
 
 .edge-figure-panel {
-  align-items: center;
-  bottom: -40px;
-  display: flex;
-  justify-content: center;
+  bottom: 0;
   position: absolute;
-  right: -54px;
-  top: 132px;
-  width: 69%;
+  right: 0;
+  top: 0;
+  width: 48%;
 }
 
+.edge-figure-panel > *,
 .edge-figure-panel .cell-output-display,
 .edge-figure-panel .quarto-figure,
 .edge-figure-panel figure,
-.edge-figure-panel p {
+.edge-figure-panel p,
+.edge-figure-panel .r-stack,
+.edge-figure-panel .r-stack > .fragment {
+  height: 100%;
   margin: 0;
   width: 100%;
 }
 
 .edge-figure-panel img {
   display: block;
-  margin: 0 auto;
-  max-height: 720px;
-  max-width: 100%;
+  height: 100%;
+  margin: 0;
+  max-height: none;
+  max-width: none;
   object-fit: contain;
+  object-position: center;
+  width: 100%;
 }
 
 .full-figure .cell-output-display,
@@ -468,6 +477,23 @@ $presentation-font-size-root: 30px;
   font-weight: 750;
   margin-top: 1.6rem;
   text-align: center;
+}
+
+/* Conclusion cards: white cards in a three-column grid, readable over an
+   optional bottom background graphic. The white variant is scoped to this
+   layout; `.takeaway-card` and `.card` elsewhere stay transparent. */
+.conclusion-cards-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.conclusion-cards .conclusion-card {
+  background: #ffffff;
+  border: 1px solid var(--imr-line);
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(23, 48, 66, 0.06);
+  padding: 0.85rem 1rem;
 }
 
 /* Hand-built concept diagram (hub-and-spoke). Recreate a simple "central thing

@@ -93,7 +93,18 @@ format_num <- function(x, digits = 2, suffix = "") {
   if (is.null(x) || length(x) == 0 || is.na(x)) {
     return("TBD")
   }
-  paste0(format(round(x, digits), trim = TRUE, big.mark = ","), suffix)
+  paste0(format(round(x, digits), trim = TRUE, big.mark = " "), suffix)
+}
+
+# Add to plots with a package-supplied theme: transparent plot, panel and legend backgrounds.
+transparent_bg <- function() {
+  ggplot2::theme(
+    plot.background = ggplot2::element_rect(fill = "transparent", colour = NA),
+    panel.background = ggplot2::element_rect(fill = "transparent", colour = NA),
+    legend.background = ggplot2::element_rect(fill = "transparent", colour = NA),
+    legend.box.background = ggplot2::element_rect(fill = "transparent", colour = NA),
+    legend.key = ggplot2::element_rect(fill = "transparent", colour = NA)
+  )
 }
 
 presentation_theme <- function(base_size = 18) {
@@ -109,7 +120,8 @@ presentation_theme <- function(base_size = 18) {
       legend.box.background = ggplot2::element_blank(),
       legend.key = ggplot2::element_blank(),
       strip.background = ggplot2::element_blank()
-    )
+    ) +
+    transparent_bg()
 }
 
 # Register a bundled hand-drawn font (default: assets/fonts/xkcd-script.ttf) for
@@ -178,7 +190,7 @@ scenario_table <- function(spict) {
   x <- spict$scenarios
   data.frame(
     Scenario = gsub(" \\(@\\$\\)", "", x$Scenario),
-    `Catch (t)` = format(round(x$C), big.mark = ",", scientific = FALSE),
+    `Catch (t)` = format(round(x$C), big.mark = " ", scientific = FALSE),
     `B/Bmsy` = format(round(x$`B/Bmsy`, 2), nsmall = 2),
     `F/Fmsy` = format(round(x$`F/Fmsy`, 2), nsmall = 2),
     check.names = FALSE
