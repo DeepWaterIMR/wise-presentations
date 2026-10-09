@@ -14,7 +14,7 @@ Run `Rscript render_presentation.R` from the presentation folder or call the scr
 
 Run `Rscript capture_slides.R` or use an integrated background browser. The capture script uses an isolated profile and supports slides with background images. Do not take over the user's interactive desktop browser.
 
-Inspect every slide for overflow, labels below 16 pt, clipped content, weak hierarchy, awkward whitespace, inconsistent spacing, crowded tables, fragment resting states, non-declarative content titles, titles ending in a full stop, a missing or wrong-model `.credit-note` on the final slide, figures that are too small, and an unclear relationship between the title and primary evidence or explanation. Inspect the contact sheet for presentation-level rhythm and the individual images for detail. Do not infer appearance from generated HTML text.
+Inspect every slide for overflow, labels below 16 pt, clipped content, weak hierarchy, awkward whitespace, inconsistent spacing, crowded tables, fragment resting states, non-declarative content titles, titles ending in a full stop, a missing `.credit-note` on the final slide or one whose model is not the agent that built the deck, figures that are too small, and an unclear relationship between the title and primary evidence or explanation. Inspect the contact sheet for presentation-level rhythm and the individual images for detail. Do not infer appearance from generated HTML text.
 
 ## Correct and repeat
 

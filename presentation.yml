@@ -4,6 +4,7 @@ project:
   authors:
     - "Analyst name"
   organisation: "Institute of Marine Research"
+  ai_model: "AI model name"  # concise name of the model the building agent runs as, e.g. "Claude Opus 5.5" or "Codex, GPT-6.1 Sol"
   meeting: "Meeting or audience title"
   date: "YYYY-MM-DD"
   story: "Write the one-sentence conclusion before building the slides."
