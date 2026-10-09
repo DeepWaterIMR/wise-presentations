@@ -479,6 +479,20 @@ $presentation-font-size-root: 30px;
   text-align: center;
 }
 
+/* Production note on the final slide: Quarto, presentation-template and the AI
+   model that built the deck. Small and muted so it never competes with the
+   conclusions. */
+.credit-note {
+  color: var(--imr-muted);
+  font-size: 0.6em;
+  margin-top: 1.4rem;
+  text-align: center;
+}
+
+.credit-note p {
+  margin: 0;
+}
+
 /* Conclusion cards: white cards in a three-column grid, readable over an
    optional bottom background graphic. The white variant is scoped to this
    layout; `.takeaway-card` and `.card` elsewhere stay transparent. */
@@ -627,4 +641,14 @@ $presentation-font-size-root: 30px;
 
 .reveal .panel-tabset .tab-content img {
   max-height: 600px;
+}
+
+/* Lists inside cards and links inside card titles keep the card typography. */
+.card ul,
+.takeaway-card ul {
+  margin: 0.2em 0 0 0.9em;
+}
+
+.card-title a {
+  font-weight: inherit;
 }

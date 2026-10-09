@@ -14,6 +14,7 @@ A Quarto RevealJS template for scientific presentations. It provides predefined 
 - A self-contained HTML presentation that can be shared as one file.
 - Focused skills for presentation creation, rendered-slide review, and template maintenance.
 - Scripts for rendering slides and producing screenshots and contact sheets for review.
+- A small credit line on the final slide stating that the slides were made with Quarto, presentation-template, and the AI model that built them.
 
 The slide-design guidance is informed by the assertion–evidence approach described by Michael Alley in *The Craft of Scientific Presentations*. The template adapts that approach to its existing Quarto visual system; it does not reproduce Alley's template.
 

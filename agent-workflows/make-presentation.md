@@ -22,6 +22,8 @@ When no compact summary exists, add project-relative inputs and a focused adapte
 
 Move detail into speaker notes, preserve scientific meaning and uncertainty, and keep visible text at least 16 pt. Add captions only when the analyst wants them.
 
+Finish the final slide with the `.credit-note` production line from `AGENTS.md`, naming the AI model you are running as.
+
 ## Review and deliver
 
 After building, follow `agent-workflows/review-presentation.md`. The presentation is not complete until the rendered path has been visually reviewed.

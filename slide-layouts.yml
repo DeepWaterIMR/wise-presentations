@@ -246,9 +246,9 @@ entries:
     name: Conclusion cards
     category: Closing
     evidence: Two to four short conclusions, optionally above a closing graphic
-    use: Keep white cards with the final conclusions visible during discussion, with an optional bottom background graphic and an animated sign-off.
+    use: Keep white cards with the final conclusions visible during discussion, with an optional bottom background graphic, an animated sign-off, and the `.credit-note` production line.
     code: .conclusion-cards
-    classes: [conclusion-cards, conclusion-cards-grid, conclusion-card, closing-inline]
+    classes: [conclusion-cards, conclusion-cards-grid, conclusion-card, closing-inline, credit-note]
     caveat: Keep each card to one or two sentences and keep content above the background graphic so nothing overlaps it.
     source_marker: conclusion-cards
     preview: conclusion-cards.png

@@ -910,7 +910,11 @@ State the decision or next analysis supported by the result.
 Thank you — questions and discussion
 :::
 
+::: {.credit-note}
+The slides were made with [Quarto](https://quarto.org/) using [presentation-template](https://deepwaterimr.github.io/presentation-template/) and Claude Opus 5.5.
+:::
+
 ::: {.notes}
-Use `.conclusion-cards` for the final slide when three short conclusions should stay visible during discussion. The white cards stay readable over the bottom background graphic (`background-image` with `background-size="contain"` and `background-position="bottom"`); keep the content above the graphic. The sign-off appears on the final click.
+Use `.conclusion-cards` for the final slide when three short conclusions should stay visible during discussion. The white cards stay readable over the bottom background graphic (`background-image` with `background-size="contain"` and `background-position="bottom"`); keep the content above the graphic. The sign-off appears on the final click. Every presentation ends with the `.credit-note` line; replace the model name with the AI model the agent that built the deck actually ran as.
 :::
 <!-- catalogue:end conclusion-cards -->
