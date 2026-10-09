@@ -125,10 +125,13 @@ section_tags <- regmatches(
   gregexpr("<section\\b[^>]*>", html, perl = TRUE)
 )[[1]]
 section_tags <- section_tags[
-  grepl('\\bclass="[^"]*\\bslide[[:space:]]+level2\\b[^"]*"', section_tags, perl = TRUE) &
-    grepl('\\bid="[^"]+"', section_tags, perl = TRUE)
+  grepl('\\bclass="[^"]*\\bslide[[:space:]]+level2\\b[^"]*"', section_tags, perl = TRUE)
 ]
-slide_ids <- unique(sub('.*\\bid="([^"]+)".*', "\\1", section_tags, perl = TRUE))
+if (any(!grepl('\\bid="[^"]+"', section_tags, perl = TRUE))) {
+  stop("Every rendered slide must have a stable ID; found an unnamed slide in ", html_file)
+}
+slide_ids <- sub('.*\\bid="([^"]+)".*', "\\1", section_tags, perl = TRUE)
+if (anyDuplicated(slide_ids)) stop("Rendered slide IDs must be unique.")
 if (!length(slide_ids)) {
   stop("Could not find RevealJS slide IDs in ", html_file)
 }

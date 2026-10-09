@@ -12,9 +12,9 @@ The repository has four connected surfaces: the downstream presentation scaffold
 
 ## Build flow
 
-1. The catalogue generator validates fields, IDs, source markers, and slide anchors, then writes `website/public/layouts.json`.
+1. The catalogue generator validates fields, IDs, exact source-marker order, and slide anchors, then writes `website/public/layouts.json`.
 2. `render_presentation.R` renders a self-contained sampler and copies the complete helper and asset trees for isolated output builds.
-3. `capture_slides.R --manifest slide-layouts.yml` discovers Reveal slide tags regardless of attribute order, checks exact manifest order, writes one PNG per stable ID, and creates a contact sheet.
+3. `capture_slides.R --manifest slide-layouts.yml` discovers Reveal slide tags regardless of attribute order, rejects unnamed or duplicate slides and checks exact manifest order, writes one PNG per stable ID, and creates a contact sheet.
 4. The website reads the generated JSON and preview directory, builds the client bundle, and publishes it under the `/presentation-template/` GitHub Pages base path.
 5. Pull requests run the contract, render, installer, skill, and website checks. Pushes to `main` additionally deploy the Pages artifact.
 
@@ -37,3 +37,13 @@ The repository pins website dependencies in `website/package-lock.json` and CI R
 ## PowerPoint evaluation
 
 The supported output is currently RevealJS HTML. A later evaluation should compare Quarto's native PowerPoint output, a dedicated PowerPoint reference template, and image-based export of the reviewed HTML slides. RevealJS classes and CSS do not translate directly to editable PowerPoint layouts, so any PowerPoint route needs an explicit mapping and separate visual validation.
+
+## Recent layout behavior
+
+`Edge figure` reserves the right half from top to bottom for a tall or square image, preserving its aspect ratio. The title and text stay on the left; wide images are letterboxed.
+
+`Figure tabs` uses RevealJS’s Tabby markup (`.panel-tabset-tabby`) inside a Quarto `.panel-tabset`. The `print_tabs()` helper requires a named list with non-empty titles and supports an empty-list fallback. CI clicks every sampler tab and checks its visible image and minimum tab-label size.
+
+`Conclusion cards` uses equal-width columns for two to four short conclusions. The optional bottom graphic and fragment sign-off are demonstrated in the sampler. Every final slide carries a `.credit-note` with the building model read from `project.ai_model`; the installable configuration retains a placeholder until a project is authored.
+
+The opening catalogue marker follows the title heading so it does not create an empty opening slide. The generator includes the preceding heading in that snippet; subsequent markers remain before their headings. Browser acceptance compares catalogue membership and order rather than a fixed layout count, then verifies the current layouts on desktop and mobile.

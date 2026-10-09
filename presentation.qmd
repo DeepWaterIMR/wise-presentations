@@ -158,8 +158,8 @@ spict <- if (identical(cfg$data$adapter, "spict")) {
 }
 ```
 
-<!-- catalogue:start title-slide -->
 ## {#title-slide .title-slide}
+<!-- catalogue:start title-slide -->
 
 ::: {.title-kicker}
 `r cfg$project$meeting`
@@ -735,7 +735,7 @@ graphics::points(0.82, 0.75, pch = 21, bg = "#6ca67a", col = "white", cex = 3, l
 <!-- catalogue:end custom-figure-font -->
 
 <!-- catalogue:start figure-tabs -->
-## Tabs let one slide hold a set of related figures for discussion {#figure-tabs .figure-tabs .smaller data-section="Figures"}
+## Tabs let one slide hold a set of related figures for discussion {#figure-tabs .figure-tabs data-section="Figures"}
 
 ```{r}
 #| label: figure-tabs-plots

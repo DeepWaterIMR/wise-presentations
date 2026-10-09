@@ -155,6 +155,7 @@ h3 { line-height: 1.12; }
 .workflow-step > span { color: var(--sky); font-size: 32px; font-weight: 800; }
 .workflow-step h3 { font-size: 23px; margin: 30px 0 10px; }
 .workflow-step p { color: var(--muted); line-height: 1.5; }
+.authoring-note { color: var(--muted); line-height: 1.55; margin-top: 30px; max-width: 900px; }
 .quickstart-grid { display: grid; gap: 18px; grid-template-columns: 1.3fr .7fr; margin-top: 54px; }
 .quickstart-card { background: white; border: 1px solid var(--line); border-radius: 14px; padding: 32px; }
 .quickstart-card.featured { background: var(--sand); border-left: 7px solid var(--green); }

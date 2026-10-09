@@ -73,7 +73,10 @@ extract_snippet <- function(marker) {
   if (length(start) != 1 || length(end) != 1 || end <= start) {
     stop("Expected exactly one ordered marker pair for catalogue entry: ", marker)
   }
-  paste(source_lines[seq.int(start + 1, end - 1)], collapse = "\n")
+  # The opening marker follows its heading to avoid a pre-heading Reveal slide.
+  # Retain that heading in the copyable snippet while excluding the marker.
+  heading <- if (start > 1L && grepl("^##(?:[[:space:]]|$)", source_lines[start - 1L])) source_lines[start - 1L] else character()
+  paste(c(heading, source_lines[seq.int(start + 1, end - 1)]), collapse = "\n")
 }
 
 records <- lapply(entries, function(entry) {
@@ -103,9 +106,9 @@ records <- lapply(entries, function(entry) {
 
 extra_starts <- grep("^<!-- catalogue:start ", trimws(source_lines), value = TRUE)
 marker_ids <- sub("^<!-- catalogue:start ([a-z0-9-]+) -->$", "\\1", extra_starts)
-if (!setequal(ids, marker_ids)) {
+if (!identical(ids, marker_ids)) {
   stop(
-    "Manifest/source catalogue mismatch. Missing from manifest: ",
+    "Manifest/source catalogue order or membership mismatch. Missing from manifest: ",
     paste(setdiff(marker_ids, ids), collapse = ", "),
     "; missing from source: ",
     paste(setdiff(ids, marker_ids), collapse = ", ")

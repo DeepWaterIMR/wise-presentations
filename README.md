@@ -9,7 +9,7 @@ A Quarto RevealJS template for scientific presentations. It provides predefined 
 ## What the template provides
 
 - Content slides with a full-sentence title that states the main message, without a closing full stop.
-- Layouts that give the primary figure, image, table, or explanation sufficient space.
+- Layouts that give the primary figure, image, table, or explanation sufficient space, including full-height edge figures, figure tabs, and conclusion cards.
 - Project-relative interfaces for reading rerenderable analysis outputs.
 - A self-contained HTML presentation that can be shared as one file.
 - Focused skills for presentation creation, rendered-slide review, and template maintenance.
@@ -60,6 +60,6 @@ Use `presentation.html` when no output filename is specified. PowerPoint export 
 
 ## Development
 
-Repository maintenance is documented in [docs/architecture.md](docs/architecture.md) and [CONTRIBUTING.md](CONTRIBUTING.md). The `maintain-presentation-template` skill applies only to this repository. Generated HTML, screenshots, contact sheets, and generated presentation assets are build artifacts and are not committed.
+Recent layout and authoring changes are recorded in [CHANGELOG.md](CHANGELOG.md). Repository maintenance is documented in [docs/architecture.md](docs/architecture.md) and [CONTRIBUTING.md](CONTRIBUTING.md). The `maintain-presentation-template` skill applies only to this repository. Generated HTML, screenshots, contact sheets, and generated presentation assets are build artifacts and are not committed.
 
 The repository-authored code and documentation are MIT licensed. The bundled IMR logo and font asset are excluded; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

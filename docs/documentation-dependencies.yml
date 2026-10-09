@@ -11,4 +11,6 @@ r_packages:
   systemfonts: "1.3.2"
   png: "0.1.9"
   ggplot2: "4.0.3"
+  tibble: "3.3.1"
+  ggOceanMaps: "3.0.1"
 website_packages: "website/package-lock.json"

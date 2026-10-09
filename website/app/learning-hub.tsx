@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, Copy, ExternalLink, Play, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -28,10 +28,13 @@ type Catalogue = {
 const layoutChoices = [
   { evidence: "One empirical figure", layout: "Text + figure", code: ".text-figure", id: "text-figure", description: "Use a short interpretation column and give the figure about 70% of the content area." },
   { evidence: "Dense or faceted figure", layout: "Wide figure", code: ".wide-figure", id: "wide-figure", description: "Use a narrow interpretation column and reserve nearly the full width for the figure." },
+  { evidence: "Tall or square figure", layout: "Edge figure", code: ".edge-figure", id: "edge-figure", description: "Fill the right half from top to bottom while keeping the title and interpretation on the left." },
+  { evidence: "Related figures for discussion", layout: "Figure tabs", code: ".panel-tabset", id: "figure-tabs", description: "Switch among full-size supporting figures with named tabs; give the main result its own slide." },
   { evidence: "Spatial result", layout: "Map + context", code: ".map-context", id: "map-context", description: "Keep the mapped area dominant and retain only the geographic context needed to interpret it." },
   { evidence: "Exact values", layout: "Scenario table", code: ".scenario-table", id: "scenario-table", description: "Use a focused full-width table when exact scenario values matter more than graphical shape." },
   { evidence: "Concept or mechanism", layout: "Concept + image", code: ".concept-image", id: "concept-image", description: "Pair the explanation with a photograph, schematic, map, or representative scientific figure." },
   { evidence: "Principal conclusion", layout: "Conclusion + figure", code: ".conclusion-figure", id: "conclusion-figure", description: "Keep the conclusion and its most relevant supporting visual visible during discussion." },
+  { evidence: "Several closing conclusions", layout: "Conclusion cards", code: ".conclusion-cards", id: "conclusion-cards", description: "Keep short conclusions on white cards above an optional closing graphic, followed by the production credit." },
 ];
 
 const workflow = [
@@ -61,6 +64,7 @@ export default function LearningHub() {
   const [category, setCategory] = useState("All");
   const [selected, setSelected] = useState<CatalogueEntry | null>(null);
   const [copied, setCopied] = useState(false);
+  const dialogTitleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     let active = true;
@@ -149,14 +153,14 @@ export default function LearningHub() {
             <a className="text-link" href="https://github.com/DeepWaterIMR/presentation-template"><ExternalLink aria-hidden="true" /> View repository</a>
           </div>
           <div className="hero-feature-points" aria-label="Template features">
-            <span>Full-sentence message titles</span>
+            <span>Message titles without a closing full stop</span>
             <span>Figures generated from analysis outputs</span>
             <span>Rendered-slide review</span>
           </div>
         </div>
         <div className="hero-preview" aria-label="Example scientific slide preview">
           <div className="slide-preview">
-            <div className="slide-title">The fitted trajectories support the main interpretation.</div>
+            <div className="slide-title">The fitted trajectories support the main interpretation</div>
             <div className="slide-rule" />
             <div className="slide-body">
               <div className="slide-notes">
@@ -203,7 +207,7 @@ export default function LearningHub() {
             <h2>Each layout is shown with a rendered example and its Quarto source.</h2>
             <p>The displayed name and code refer to the same composition, so a layout can be requested unambiguously.</p>
           </div>
-          <Link className="text-link" href="./demo/presentation.html">Open all {entries.length || 21} examples <Play aria-hidden="true" /></Link>
+          <Link className="text-link" href="./demo/presentation.html">{entries.length ? `Open all ${entries.length} examples` : "Open all examples"} <Play aria-hidden="true" /></Link>
         </div>
 
         <div className="catalogue-controls">
@@ -276,6 +280,7 @@ export default function LearningHub() {
             </article>
           ))}
         </div>
+        <p className="authoring-note">Use transparent plot, panel, and legend backgrounds; add <code>transparent_bg()</code> after a package theme. End the final slide with a <code>.credit-note</code> naming Quarto, presentation-template, and the building agent’s model from <code>project.ai_model</code> in <code>presentation.yml</code>.</p>
         <div className="quickstart-grid">
           <article className="quickstart-card featured">
             <p className="eyebrow">Agent-assisted</p>
@@ -328,13 +333,13 @@ export default function LearningHub() {
 
       <Dialog open={Boolean(selected)} onOpenChange={(open) => { if (!open) closeEntry(); }}>
         {selected ? (
-          <DialogContent className="layout-dialog">
+          <DialogContent className="layout-dialog" initialFocus={dialogTitleRef}>
             <DialogHeader>
               <div className="dialog-heading-row">
                 <span className="tag">{selected.kind === "layout" ? selected.category : "Feature"}</span>
                 <code className="class-list">{selected.code}</code>
               </div>
-              <DialogTitle>{selected.name}</DialogTitle>
+              <DialogTitle ref={dialogTitleRef} tabIndex={-1}>{selected.name}</DialogTitle>
               <DialogDescription>{selected.use}</DialogDescription>
             </DialogHeader>
             <div className="dialog-grid">

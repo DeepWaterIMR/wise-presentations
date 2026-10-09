@@ -253,8 +253,12 @@ print_tabs <- function(plots, fallback = NULL) {
     if (!is.null(fallback)) print(fallback)
     return(invisible())
   }
+  titles <- names(plots)
+  if (is.null(titles) || anyNA(titles) || any(!nzchar(trimws(titles)))) {
+    stop("print_tabs() requires a named list with a non-empty title for every plot.")
+  }
   for (i in seq_along(plots)) {
-    cat("  \n###", names(plots)[i], "  \n")
+    cat("  \n###", titles[i], "  \n")
     print(plots[[i]])
     cat("  \n")
   }

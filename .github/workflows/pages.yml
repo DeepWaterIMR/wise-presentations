@@ -53,6 +53,7 @@ jobs:
 
       - name: Validate skills and installer
         run: |
+          Rscript scripts/test_helpers.R
           Rscript scripts/validate_skills.R
           Rscript scripts/test_installer.R
 
