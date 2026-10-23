@@ -31,6 +31,7 @@ project_default <- make_project("default")
 run_installer(c("--target", project_default))
 required_default <- c(
   file.path(project_default, "docs", "presentation", "presentation.qmd"),
+  file.path(project_default, "docs", "presentation", "R", "package_setup.R"),
   file.path(project_default, ".agents", "skills", "make-presentation", "SKILL.md"),
   file.path(project_default, ".agents", "skills", "make-presentation", "references", "workflow.md"),
   file.path(project_default, ".agents", "skills", "review-presentation", "SKILL.md"),
@@ -38,6 +39,30 @@ required_default <- c(
   file.path(project_default, ".claude", "skills", "review-presentation", "references", "workflow.md")
 )
 if (!all(file.exists(required_default))) stop("Default installation is incomplete.")
+copied_setup <- readBin(
+  file.path(project_default, "docs", "presentation", "R", "package_setup.R"),
+  what = "raw", n = file.info(file.path(project_default, "docs", "presentation", "R", "package_setup.R"))$size
+)
+source_setup <- readBin(file.path(repo_root, "R", "package_setup.R"), what = "raw",
+                        n = file.info(file.path(repo_root, "R", "package_setup.R"))$size)
+if (!identical(copied_setup, source_setup)) stop("The shared package helper was not copied intact.")
+canonical_setup <- file.path(
+  dirname(repo_root), "wise-writing", "project-template", "R", "package_setup.R"
+)
+if (file.exists(canonical_setup)) {
+  canonical_bytes <- readBin(
+    canonical_setup, what = "raw", n = file.info(canonical_setup)$size
+  )
+  if (!identical(source_setup, canonical_bytes)) {
+    stop("Refresh R/package_setup.R from wise-writing's canonical helper.")
+  }
+}
+presentation_source <- readLines(file.path(repo_root, "presentation.qmd"), warn = FALSE)
+if (!any(grepl("install_missing_packages: false", presentation_source, fixed = TRUE)) ||
+    !any(grepl("package_setup(", presentation_source, fixed = TRUE)) ||
+    any(grepl("install.packages(", presentation_source, fixed = TRUE))) {
+  stop("Presentation package setup must use the shared helper and default to no installation.")
+}
 if (dir.exists(file.path(project_default, ".agents", "skills", "maintain-presentation-template"))) {
   stop("Repository maintenance skill must not be installed downstream.")
 }

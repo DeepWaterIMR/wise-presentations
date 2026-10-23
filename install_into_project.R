@@ -129,6 +129,7 @@ deck_files <- c(
   "slide-plan.md",
   "render_presentation.R",
   "capture_slides.R",
+  file.path("R", "package_setup.R"),
   file.path("R", "presentation_helpers.R"),
   file.path("assets", "theme.scss"),
   file.path("assets", "qa-fragments.html"),

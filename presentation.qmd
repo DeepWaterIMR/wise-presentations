@@ -35,7 +35,7 @@ execute:
 params:
   config_file: "presentation.yml"
   project_root: "."
-  install_missing_packages: true
+  install_missing_packages: false
 ---
 
 ```{r}
@@ -52,28 +52,12 @@ packages <- c(
   ragg = NA,
   systemfonts = NA
 )
-if (isTRUE(params$install_missing_packages)) {
-  missing <- packages[
-    !vapply(names(packages), requireNamespace, logical(1), quietly = TRUE)
-  ]
-  if (length(missing)) {
-    repos <- getOption("repos")
-    if (is.na(repos["CRAN"]) || repos["CRAN"] == "@CRAN@") {
-      repos["CRAN"] <- "https://cloud.r-project.org"
-      options(repos = repos)
-    }
-    lib <- strsplit(Sys.getenv("R_LIBS_USER"), .Platform$path.sep)[[1]][1]
-    if (!is.na(lib) && nzchar(lib)) {
-      if (!dir.exists(lib)) dir.create(lib, recursive = TRUE)
-      .libPaths(c(lib, .libPaths()))
-    }
-    options(install.packages.compile.from.source = "never")
-    install.packages(names(missing))
-  }
-}
-invisible(lapply(names(packages), function(package) {
-  suppressPackageStartupMessages(library(package, character.only = TRUE))
-}))
+source("R/package_setup.R")
+package_setup(
+  packages,
+  install_missing_packages = isTRUE(params$install_missing_packages),
+  project_root = getwd()
+)
 
 knitr::opts_chunk$set(
   dev = "png",
