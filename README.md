@@ -34,6 +34,14 @@ The `make-presentation` skill covers orientation, discussion, planning, and cons
 
 ## Install manually
 
+### Fiskwise core bootstrap
+
+When installed through Fiskwise, the `make-presentation` and `review-presentation` skill packages can be copied directly into an agent's skill folder. This core knowledge install does not require R, Quarto, or an R package library, and it does not install modeling software or optional R packages. Keep those tools opt-in and add them only when a project needs them and the user approves.
+
+The core skill install does not create a presentation project. Once R is available, use the project installer below if you want the starter files in an analysis repository. The Quarto CLI is installed separately from the R package `quarto`; the R package is an interface to the CLI, not a replacement for it.
+
+### Standalone install from this repository
+
 From a clone of this repository:
 
 ```bash
@@ -49,6 +57,8 @@ Rscript scripts/install_global_skills.R
 ```
 
 This installs `make-presentation`, `review-presentation`, and `maintain-presentation-template` under `~/.agents/skills/`. Each skill carries its workflow reference, so it works outside the repository checkout. Existing skill folders are protected; pass `--force` only when you intend to replace those three packages. Use `--target` to stage or inspect an installation elsewhere.
+
+This standalone installer is written in base R, so it requires `Rscript`; the Fiskwise core bootstrap uses filesystem copies when R is not yet available. Neither route installs R, Quarto, R packages, or model software.
 
 ## Build and review a presentation
 

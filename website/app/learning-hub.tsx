@@ -283,19 +283,21 @@ export default function LearningHub() {
           ))}
         </div>
         <p className="authoring-note">Use transparent plot, panel, and legend backgrounds; add <code>transparent_bg()</code> after a package theme. End the final slide with a <code>.credit-note</code> naming Quarto, wise-presentations, and the building agent’s model from <code>project.ai_model</code> in <code>presentation.yml</code>.</p>
+        <p className="authoring-note">For agent skills across packs, install the <a href="https://github.com/DeepWaterIMR/fiskwise">Fiskwise ecosystem</a> first: its core setup installs wise-writing and wise-presentations skills without installing R, Quarto, R packages, or model software. The direct project starter below is separate and copies the presentation files plus a self-contained shared R package helper. Missing R packages are not installed during rendering by default; set <code>install_missing_packages: true</code> in <code>presentation.qmd</code> only after you authorize installation for that run. A project with <code>renv</code> remains managed by renv. Install the Quarto CLI separately from the R package <code>quarto</code>.</p>
         <div className="quickstart-grid">
           <article className="quickstart-card featured">
-            <p className="eyebrow">Agent-assisted</p>
-            <h3>Begin with the analysis context and an agreed slide plan.</h3>
-            <p>Provide the template URL, analysis project, and destination folder. The agent reviews the project, drafts the slide plan, and waits for approval before building the presentation.</p>
-            <pre><code>Use https://github.com/DeepWaterIMR/wise-presentations to start a presentation in docs/presentation. Review the analysis first, prepare slide-plan.md, and wait for approval before building.</code></pre>
+            <p className="eyebrow">Fiskwise core</p>
+            <h3>Install shared writing and presentation skills for your agent.</h3>
+            <p>The ecosystem installer sets up core research guidance and can add optional workflow packs when needed. It does not install R packages or modeling software.</p>
+            <pre><code>Install Fiskwise from https://github.com/DeepWaterIMR/fiskwise with wise-writing and wise-presentations as the core packs. Do not install optional R packages or modeling software.</code></pre>
+            <p>Then use <code>make-presentation</code> with the analysis project and destination folder. Review the analysis, prepare <code>slide-plan.md</code>, and wait for approval before building.</p>
           </article>
           <article className="quickstart-card">
-            <p className="eyebrow">Manual install</p>
-            <h3>Install the template into an existing project.</h3>
+            <p className="eyebrow">Direct project starter</p>
+            <h3>Copy a presentation starter into an existing analysis project.</h3>
             <pre><code>{`Rscript install_into_project.R \\
   --target "/path/to/project"`}</code></pre>
-            <p>The default destination is <code>docs/presentation/</code>. Existing project-level agent guidance is not overwritten.</p>
+            <p>The default destination is <code>docs/presentation/</code>. This copies files into one project; it does not install global skills. Existing project-level agent guidance is not overwritten.</p>
           </article>
         </div>
       </section>
