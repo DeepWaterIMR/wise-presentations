@@ -38,11 +38,18 @@ for (system in c(".agents", ".claude")) {
     }
     workflow <- expected[[name]]
     body <- paste(readLines(path, warn = FALSE), collapse = "\n")
-    if (!grepl(workflow, body, fixed = TRUE)) {
-      stop(path, " must route to ", workflow, ".")
+    reference <- file.path(system, "skills", name, "references", "workflow.md")
+    if (!grepl("references/workflow.md", body, fixed = TRUE)) {
+      stop(path, " must route to its package-local workflow reference.")
     }
     if (!file.exists(workflow)) {
       stop("Missing shared workflow: ", workflow)
+    }
+    if (!file.exists(reference)) {
+      stop("Missing package-local workflow reference: ", reference)
+    }
+    if (!identical(readLines(reference, warn = FALSE), readLines(workflow, warn = FALSE))) {
+      stop(reference, " is out of sync with ", workflow, ".")
     }
   }
 }

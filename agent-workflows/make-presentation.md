@@ -26,4 +26,4 @@ Finish the final slide with the `.credit-note` production line from `AGENTS.md`,
 
 ## Review and deliver
 
-After building, follow `agent-workflows/review-presentation.md`. The presentation is not complete until the rendered path has been visually reviewed.
+After building, follow the `review-presentation` skill. The presentation is not complete until the rendered path has been visually reviewed.

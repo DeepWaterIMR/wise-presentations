@@ -1,10 +1,12 @@
-# presentation-template
+# wise-presentations
 
 A Quarto RevealJS template for scientific presentations. It provides predefined slide layouts, project-relative data interfaces, and a render-and-review workflow.
 
-**Learning hub:** <https://deepwaterimr.github.io/presentation-template/>
+**Learning hub:** <https://deepwaterimr.github.io/wise-presentations/>
 
-**Repository:** <https://github.com/DeepWaterIMR/presentation-template>
+**Repository:** <https://github.com/DeepWaterIMR/wise-presentations>
+
+Part of [Fiskwise](https://deepwaterimr.github.io/fiskwise/), the shared home for [wise-writing](https://github.com/DeepWaterIMR/wise-writing), [index-wise](https://github.com/DeepWaterIMR/index-wise), and [spict-wise](https://github.com/DeepWaterIMR/spict-wise).
 
 ## What the template provides
 
@@ -14,7 +16,7 @@ A Quarto RevealJS template for scientific presentations. It provides predefined 
 - A self-contained HTML presentation that can be shared as one file.
 - Focused skills for presentation creation, rendered-slide review, and template maintenance.
 - Scripts for rendering slides and producing screenshots and contact sheets for review.
-- A small credit line on the final slide stating that the slides were made with Quarto, presentation-template, and the AI model that built them.
+- A small credit line on the final slide stating that the slides were made with Quarto, wise-presentations, and the AI model that built them.
 
 The slide-design guidance is informed by the assertion–evidence approach described by Michael Alley in *The Craft of Scientific Presentations*. The template adapts that approach to its existing Quarto visual system; it does not reproduce Alley's template.
 
@@ -23,7 +25,7 @@ The slide-design guidance is informed by the assertion–evidence approach descr
 Give the agent this repository URL, the analysis project, and the folder where the presentation should live:
 
 ```text
-Use https://github.com/DeepWaterIMR/presentation-template to initiate a presentation in docs/presentation. Familiarize yourself with the analysis project first. Discuss the audience, purpose, duration, meeting context, one-sentence story, and HTML output filename with me. Prepare slide-plan.md, show me the overview, and wait for approval before building.
+Use https://github.com/DeepWaterIMR/wise-presentations to initiate a presentation in docs/presentation. Familiarize yourself with the analysis project first. Discuss the audience, purpose, duration, meeting context, one-sentence story, and HTML output filename with me. Prepare slide-plan.md, show me the overview, and wait for approval before building.
 ```
 
 The `make-presentation` skill covers orientation, discussion, planning, and construction. The `review-presentation` skill covers rendering, screenshots, correction, and delivery checks.
@@ -38,12 +40,20 @@ Rscript install_into_project.R --target "/path/to/project"
 
 The default destination is `docs/presentation/`. Use `--presentation-dir presentation` to choose another project-relative folder. The installer refuses to overwrite existing presentation files unless `--force` is supplied, never overwrites project-level agent guidance, and warns when required files are ignored by Git.
 
+To install the three skill packages globally for your user account, run this from the repository:
+
+```bash
+Rscript scripts/install_global_skills.R
+```
+
+This installs `make-presentation`, `review-presentation`, and `maintain-presentation-template` under `~/.agents/skills/`. Each skill carries its workflow reference, so it works outside the repository checkout. Existing skill folders are protected; pass `--force` only when you intend to replace those three packages. Use `--target` to stage or inspect an installation elsewhere.
+
 ## Build and review a presentation
 
 1. Learn the analysis and identify stable result objects or data-loading scripts.
 2. Agree on the sequence of messages and the slide plan.
 3. Connect project-relative inputs through `presentation.yml`.
-4. Select layouts from the [learning hub](https://deepwaterimr.github.io/presentation-template/).
+4. Select layouts from the [learning hub](https://deepwaterimr.github.io/wise-presentations/).
 5. Build the presentation from the approved plan.
 6. Run `Rscript render_presentation.R`.
 7. Run `Rscript capture_slides.R` and inspect every slide plus the contact sheet.

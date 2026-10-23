@@ -911,7 +911,7 @@ Thank you — questions and discussion
 :::
 
 ::: {.credit-note}
-The slides were made with [Quarto](https://quarto.org/) using [presentation-template](https://deepwaterimr.github.io/presentation-template/) and `r cfg$project$ai_model`.
+The slides were made with [Quarto](https://quarto.org/) using [wise-presentations](https://deepwaterimr.github.io/wise-presentations/) and `r cfg$project$ai_model`.
 :::
 
 ::: {.notes}

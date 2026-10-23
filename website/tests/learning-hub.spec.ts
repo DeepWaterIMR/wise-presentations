@@ -11,9 +11,11 @@ test("catalogue, deep links, dialog, copy, and responsive layout", async ({ page
     if (response.status() >= 400) failedResponses.push(`${response.status()} ${response.url()}`);
   });
 
-  await page.goto("/presentation-template/");
-  await expect(page).toHaveTitle("Presentation Template | DeepWaterIMR");
+  await page.goto("/wise-presentations/");
+  await expect(page).toHaveTitle("wise-presentations | Fiskwise");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Match each scientific claim with an appropriate slide layout.");
+  await expect(page.getByRole("img", { name: "Fiskwise" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Fiskwise", exact: true })).toHaveAttribute("href", "https://deepwaterimr.github.io/fiskwise/");
 
   const cards = page.locator(".layout-card");
   await expect(cards).toHaveCount(layouts.length);
@@ -73,7 +75,7 @@ test("catalogue, deep links, dialog, copy, and responsive layout", async ({ page
   await expect(dialog).toBeHidden();
   await expect(mapCard).toBeFocused();
 
-  await page.goto("/presentation-template/#layout/background-image");
+  await page.goto("/wise-presentations/#layout/background-image");
   await expect(page.getByRole("dialog")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Background image" })).toBeVisible();
   await page.keyboard.press("Escape");
@@ -88,10 +90,15 @@ test("catalogue, deep links, dialog, copy, and responsive layout", async ({ page
   expect(failedResponses).toEqual([]);
 
   await page.screenshot({ path: testInfo.outputPath("learning-hub.png"), fullPage: true });
+  if (testInfo.project.name === "mobile") {
+    await page.setViewportSize({ width: 320, height: 800 });
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
+    await expect.poll(() => page.locator(".site-header").evaluate((header) => header.scrollWidth <= header.clientWidth + 1)).toBe(true);
+  }
 });
 
 test("sampler opens on its title and figure tabs switch visible plots", async ({ page }, testInfo) => {
-  await page.goto("/presentation-template/demo/presentation.html");
+  await page.goto("/wise-presentations/demo/presentation.html");
   await page.waitForFunction(() => (window as unknown as { Reveal?: { isReady(): boolean } }).Reveal?.isReady());
   const slideIds = await page.locator(".reveal .slides section.slide.level2").evaluateAll((slides) => slides.map((slide) => slide.id));
   expect(slideIds).toEqual(entries.map((entry) => entry.id));
@@ -100,7 +107,7 @@ test("sampler opens on its title and figure tabs switch visible plots", async ({
   } else {
     await expect(page.locator("#title-slide")).toBeVisible();
   }
-  await page.goto("/presentation-template/demo/presentation.html#/figure-tabs");
+  await page.goto("/wise-presentations/demo/presentation.html#/figure-tabs");
   const tabsSlide = page.locator("#figure-tabs");
   await page.waitForFunction(() => (window as unknown as { Reveal?: { isReady(): boolean } }).Reveal?.isReady());
   if (testInfo.project.name === "desktop") {
@@ -121,7 +128,7 @@ test("sampler opens on its title and figure tabs switch visible plots", async ({
     expect(await tab.evaluate((element) => parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThanOrEqual(16 * 96 / 72 - 0.01);
   }
   await page.screenshot({ path: testInfo.outputPath("figure-tabs.png") });
-  await page.goto("/presentation-template/demo/presentation.html?qa-fragments=last#/conclusion-cards");
+  await page.goto("/wise-presentations/demo/presentation.html?qa-fragments=last#/conclusion-cards");
   const grid = page.locator(".conclusion-cards-grid");
   await expect(grid).toBeVisible();
   expect(await page.locator(".credit-note").evaluate((element) => parseFloat(getComputedStyle(element).fontSize))).toBeGreaterThanOrEqual(16 * 96 / 72 - 0.01);

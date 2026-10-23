@@ -1,6 +1,6 @@
 # Maintain the presentation template
 
-Use this workflow only in the presentation-template repository.
+Use this workflow only in the wise-presentations repository.
 
 ## Preserve the public contracts
 

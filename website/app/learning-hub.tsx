@@ -130,15 +130,17 @@ export default function LearningHub() {
   return (
     <main>
       <header className="site-header">
-        <Link className="brand" href="#top" aria-label="Presentation template home">
-          <span className="brand-mark">IMR</span>
-          <span>Presentation template</span>
+        <Link className="brand" href="#top" aria-label="wise-presentations home">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="brand-wordmark" src="./fiskwise/wordmark.svg" alt="Fiskwise" />
+          <span className="brand-product">wise-presentations</span>
         </Link>
         <nav aria-label="Primary navigation">
           <Link href="#choose">Choose a layout</Link>
           <Link href="#layouts">Layouts</Link>
           <Link href="#start">Get started</Link>
-          <a href="https://github.com/DeepWaterIMR/presentation-template">GitHub</a>
+          <a href="https://github.com/DeepWaterIMR/wise-presentations">GitHub</a>
+          <a href="https://deepwaterimr.github.io/fiskwise/">Fiskwise</a>
         </nav>
       </header>
 
@@ -146,11 +148,11 @@ export default function LearningHub() {
         <div className="hero-copy">
           <p className="eyebrow">Quarto layouts for scientific presentations</p>
           <h1>Match each scientific claim with an appropriate slide layout.</h1>
-          <p className="hero-lead">The template provides predefined layouts, reproducible figure workflows, and rendering checks for academic presentations.</p>
+          <p className="hero-lead">wise-presentations provides reusable layouts, reproducible figure workflows, and rendering checks for academic presentations.</p>
           <div className="hero-actions">
             <Link className="button button-primary" href="#layouts">Browse layouts <ArrowRight aria-hidden="true" /></Link>
             <Link className="button button-secondary" href="./demo/presentation.html"><Play aria-hidden="true" /> Open sampler</Link>
-            <a className="text-link" href="https://github.com/DeepWaterIMR/presentation-template"><ExternalLink aria-hidden="true" /> View repository</a>
+            <a className="text-link" href="https://github.com/DeepWaterIMR/wise-presentations"><ExternalLink aria-hidden="true" /> View repository</a>
           </div>
           <div className="hero-feature-points" aria-label="Template features">
             <span>Message titles without a closing full stop</span>
@@ -269,7 +271,7 @@ export default function LearningHub() {
         <div className="section-heading">
           <p className="eyebrow">Reproducible workflow</p>
           <h2>Presentation inputs can remain connected to the analysis project.</h2>
-          <p>The template separates scientific computation from presentation-specific composition while allowing displayed results to be regenerated.</p>
+          <p>wise-presentations separates scientific computation from slide composition while keeping displayed results reproducible.</p>
         </div>
         <div className="workflow-grid">
           {workflow.map((step) => (
@@ -280,13 +282,13 @@ export default function LearningHub() {
             </article>
           ))}
         </div>
-        <p className="authoring-note">Use transparent plot, panel, and legend backgrounds; add <code>transparent_bg()</code> after a package theme. End the final slide with a <code>.credit-note</code> naming Quarto, presentation-template, and the building agent’s model from <code>project.ai_model</code> in <code>presentation.yml</code>.</p>
+        <p className="authoring-note">Use transparent plot, panel, and legend backgrounds; add <code>transparent_bg()</code> after a package theme. End the final slide with a <code>.credit-note</code> naming Quarto, wise-presentations, and the building agent’s model from <code>project.ai_model</code> in <code>presentation.yml</code>.</p>
         <div className="quickstart-grid">
           <article className="quickstart-card featured">
             <p className="eyebrow">Agent-assisted</p>
             <h3>Begin with the analysis context and an agreed slide plan.</h3>
             <p>Provide the template URL, analysis project, and destination folder. The agent reviews the project, drafts the slide plan, and waits for approval before building the presentation.</p>
-            <pre><code>Use https://github.com/DeepWaterIMR/presentation-template to start a presentation in docs/presentation. Review the analysis first, prepare slide-plan.md, and wait for approval before building.</code></pre>
+            <pre><code>Use https://github.com/DeepWaterIMR/wise-presentations to start a presentation in docs/presentation. Review the analysis first, prepare slide-plan.md, and wait for approval before building.</code></pre>
           </article>
           <article className="quickstart-card">
             <p className="eyebrow">Manual install</p>
@@ -321,14 +323,14 @@ export default function LearningHub() {
           <h2>New layouts require a source example, catalogue record, rendered preview, and validation.</h2>
         </div>
         <div className="contribution-actions">
-          <a className="button button-primary" href="https://github.com/DeepWaterIMR/presentation-template/blob/main/CONTRIBUTING.md">Contribution guide <ArrowRight aria-hidden="true" /></a>
-          <a className="button button-secondary" href="https://github.com/DeepWaterIMR/presentation-template/issues">Report an issue <ExternalLink aria-hidden="true" /></a>
+          <a className="button button-primary" href="https://github.com/DeepWaterIMR/wise-presentations/blob/main/CONTRIBUTING.md">Contribution guide <ArrowRight aria-hidden="true" /></a>
+          <a className="button button-secondary" href="https://github.com/DeepWaterIMR/wise-presentations/issues">Report an issue <ExternalLink aria-hidden="true" /></a>
         </div>
       </section>
 
       <footer>
-        <span>DeepWaterIMR presentation template</span>
-        <span>Quarto source · Self-contained HTML · MIT-licensed code</span>
+        <span>wise-presentations</span>
+        <span>Quarto source · Self-contained HTML · MIT-licensed code · <a href="https://deepwaterimr.github.io/fiskwise/">Fiskwise home</a></span>
       </footer>
 
       <Dialog open={Boolean(selected)} onOpenChange={(open) => { if (!open) closeEntry(); }}>

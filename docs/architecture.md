@@ -15,7 +15,7 @@ The repository has four connected surfaces: the downstream presentation scaffold
 1. The catalogue generator validates fields, IDs, exact source-marker order, and slide anchors, then writes `website/public/layouts.json`.
 2. `render_presentation.R` renders a self-contained sampler and copies the complete helper and asset trees for isolated output builds.
 3. `capture_slides.R --manifest slide-layouts.yml` discovers Reveal slide tags regardless of attribute order, rejects unnamed or duplicate slides and checks exact manifest order, writes one PNG per stable ID, and creates a contact sheet.
-4. The website reads the generated JSON and preview directory, builds the client bundle, and publishes it under the `/presentation-template/` GitHub Pages base path.
+4. The website reads the generated JSON and preview directory, builds the client bundle, and publishes it under the `/wise-presentations/` GitHub Pages base path.
 5. Pull requests run the contract, render, installer, skill, and website checks. Pushes to `main` additionally deploy the Pages artifact.
 
 ## Layout and feature boundary
@@ -24,9 +24,9 @@ A layout is an audience-facing composition that a user can request by name and Q
 
 ## Skill boundaries
 
-`make-presentation` covers scientific orientation, the approval gate, and data-backed construction. `review-presentation` covers rendering, screenshots, correction, and delivery. Both are installed downstream.
+`make-presentation` covers scientific orientation, the approval gate, and data-backed construction. `review-presentation` covers rendering, screenshots, correction, and delivery. Both are installed downstream with their workflow references. `scripts/install_global_skills.R` can also install all three skill packages into a user-level `.agents/skills` directory without checkout-relative links.
 
-`maintain-presentation-template` covers this repository's catalogue, sampler, site, installer, and validation contracts. It remains repository-local.
+`maintain-presentation-template` covers this repository's catalogue, sampler, site, installer, and validation contracts. The skill ID remains stable, is excluded from downstream project installs, and is included in explicit global installs.
 
 Stable writing, scientific, data, privacy, visual, and installation rules remain in `AGENTS.md`.
 

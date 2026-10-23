@@ -4,7 +4,7 @@ import { extname, resolve, sep } from "node:path";
 
 const host = "127.0.0.1";
 const port = Number(process.env.PORT ?? 4173);
-const prefix = "/presentation-template";
+const prefix = "/wise-presentations";
 const root = resolve("dist/client");
 const types = {
   ".css": "text/css; charset=utf-8",

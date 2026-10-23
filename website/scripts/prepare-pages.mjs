@@ -2,7 +2,7 @@ import { cpSync, existsSync, rmSync } from "node:fs";
 import { resolve } from "node:path";
 
 const clientRoot = resolve("dist/client");
-const nestedRoot = resolve(clientRoot, "presentation-template");
+const nestedRoot = resolve(clientRoot, "wise-presentations");
 const nestedAssets = resolve(nestedRoot, "_next");
 const publicAssets = resolve(clientRoot, "_next");
 

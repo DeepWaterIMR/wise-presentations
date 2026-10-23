@@ -140,9 +140,13 @@ root_files <- c(
   file.path("agent-workflows", "make-presentation.md"),
   file.path("agent-workflows", "review-presentation.md"),
   file.path(".agents", "skills", "make-presentation", "SKILL.md"),
+  file.path(".agents", "skills", "make-presentation", "references", "workflow.md"),
   file.path(".agents", "skills", "review-presentation", "SKILL.md"),
+  file.path(".agents", "skills", "review-presentation", "references", "workflow.md"),
   file.path(".claude", "skills", "make-presentation", "SKILL.md"),
-  file.path(".claude", "skills", "review-presentation", "SKILL.md")
+  file.path(".claude", "skills", "make-presentation", "references", "workflow.md"),
+  file.path(".claude", "skills", "review-presentation", "SKILL.md"),
+  file.path(".claude", "skills", "review-presentation", "references", "workflow.md")
 )
 
 message("Installing presentation starter into ", deck_dir)

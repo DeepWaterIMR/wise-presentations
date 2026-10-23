@@ -32,7 +32,10 @@ run_installer(c("--target", project_default))
 required_default <- c(
   file.path(project_default, "docs", "presentation", "presentation.qmd"),
   file.path(project_default, ".agents", "skills", "make-presentation", "SKILL.md"),
-  file.path(project_default, ".agents", "skills", "review-presentation", "SKILL.md")
+  file.path(project_default, ".agents", "skills", "make-presentation", "references", "workflow.md"),
+  file.path(project_default, ".agents", "skills", "review-presentation", "SKILL.md"),
+  file.path(project_default, ".claude", "skills", "make-presentation", "references", "workflow.md"),
+  file.path(project_default, ".claude", "skills", "review-presentation", "references", "workflow.md")
 )
 if (!all(file.exists(required_default))) stop("Default installation is incomplete.")
 if (dir.exists(file.path(project_default, ".agents", "skills", "maintain-presentation-template"))) {
@@ -79,3 +82,42 @@ if (!grepl("ignored by the target repository", ignored, fixed = TRUE)) {
 }
 
 message("Installer contract passed: default, custom, overwrite, traversal, optional shim, skill scope, and ignored-file warning.")
+
+# Global skill installation is exercised only in a temporary target.
+global_installer <- file.path(repo_root, "scripts", "install_global_skills.R")
+global_target <- file.path(tempdir(), paste0("wise-presentations-global-skills-", Sys.getpid()))
+dir.create(global_target, recursive = TRUE, showWarnings = FALSE)
+writeLines("keep", file.path(global_target, "unrelated-skill.txt"))
+run_global_installer <- function(arguments, expected_status = 0L) {
+  output_file <- tempfile("global-skills-output-")
+  status <- system2(
+    rscript,
+    args = c(shQuote(global_installer), vapply(arguments, shQuote, character(1))),
+    stdout = output_file,
+    stderr = output_file
+  )
+  if (is.null(status)) status <- 0L
+  output <- paste(readLines(output_file, warn = FALSE), collapse = "\n")
+  unlink(output_file)
+  if (!identical(as.integer(status), as.integer(expected_status))) {
+    stop("Global skill installer returned ", status, " instead of ", expected_status, ".\n", output)
+  }
+  output
+}
+run_global_installer(c("--target", global_target))
+installed_skills <- c("make-presentation", "review-presentation", "maintain-presentation-template")
+for (skill in installed_skills) {
+  package <- file.path(global_target, skill)
+  if (!file.exists(file.path(package, "SKILL.md")) || !file.exists(file.path(package, "references", "workflow.md"))) {
+    stop("Global skill package is incomplete: ", skill)
+  }
+  skill_text <- paste(readLines(file.path(package, "SKILL.md"), warn = FALSE), collapse = "\n")
+  if (grepl("agent-workflows/", skill_text, fixed = TRUE)) {
+    stop("Global skill shim still depends on a repository-relative workflow path: ", skill)
+  }
+}
+if (!file.exists(file.path(global_target, "unrelated-skill.txt"))) stop("Global installation removed an unrelated file.")
+conflict <- run_global_installer(c("--target", global_target), expected_status = 1L)
+if (!grepl("Skill destination already exists", conflict, fixed = TRUE)) stop("Global installer did not protect existing skills.")
+run_global_installer(c("--target", global_target, "--force"))
+message("Global skill installer contract passed: three relocatable packages, conflict protection, and forced replacement.")

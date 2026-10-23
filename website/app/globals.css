@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "../public/fiskwise/fiskwise-tokens.css";
 
 @theme inline {
   --color-background: var(--paper);
@@ -13,15 +14,15 @@
   --color-primary-foreground: var(--white);
   --color-secondary: var(--sand);
   --color-secondary-foreground: var(--ink);
-  --color-muted: #edf1ef;
+  --color-muted: color-mix(in srgb, var(--fiskwise-bg), var(--fiskwise-border) 35%);
   --color-muted-foreground: var(--muted);
-  --color-accent: #e4eef0;
+  --color-accent: var(--sand);
   --color-accent-foreground: var(--ink);
   --color-destructive: var(--coral);
   --color-border: var(--line);
   --color-input: var(--line);
   --color-ring: var(--sky);
-  --font-sans: Aptos, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--fiskwise-font);
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --radius-sm: 6px;
   --radius-md: 8px;
@@ -30,16 +31,16 @@
 }
 
 :root {
-  --ink: #173042;
-  --blue: #056a89;
-  --sky: #449bcf;
-  --green: #6ca67a;
-  --coral: #d44f56;
-  --sand: #f2ead8;
-  --paper: #f7f8f5;
-  --muted: #667985;
-  --line: #d6dedb;
-  --white: #ffffff;
+  --ink: var(--fiskwise-navy);
+  --blue: var(--fiskwise-teal);
+  --sky: var(--fiskwise-teal);
+  --green: var(--fiskwise-teal);
+  --coral: var(--fiskwise-teal);
+  --sand: color-mix(in srgb, var(--fiskwise-teal), var(--fiskwise-white) 90%);
+  --paper: var(--fiskwise-bg);
+  --muted: var(--fiskwise-muted);
+  --line: var(--fiskwise-border);
+  --white: var(--fiskwise-white);
   --background: var(--paper);
   --foreground: var(--ink);
   --card: var(--white);
@@ -58,7 +59,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 84px; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: Aptos, "Helvetica Neue", Arial, sans-serif; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--fiskwise-font); }
 button, input { font: inherit; }
 a { color: inherit; }
 a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid color-mix(in srgb, var(--sky), transparent 35%); outline-offset: 4px; }
@@ -67,7 +68,8 @@ code, pre { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospac
 
 .site-header { align-items: center; backdrop-filter: blur(18px); background: color-mix(in srgb, var(--paper), transparent 8%); border-bottom: 1px solid color-mix(in srgb, var(--line), transparent 30%); display: flex; justify-content: space-between; margin: 0 auto; max-width: 100%; padding: 18px max(28px, calc((100vw - 1240px) / 2)); position: sticky; top: 0; z-index: 30; }
 .brand { align-items: center; display: flex; font-weight: 760; gap: 12px; text-decoration: none; }
-.brand-mark { align-items: center; background: var(--blue); border-radius: 50%; color: white; display: inline-flex; font-size: 11px; height: 36px; justify-content: center; letter-spacing: .04em; width: 36px; }
+.brand-wordmark { display: inline-block; flex: 0 0 auto; height: 32px; object-fit: contain; width: auto; }
+.brand-product { font-size: 14px; white-space: nowrap; }
 nav { display: flex; gap: 24px; }
 nav a { color: var(--muted); font-size: 14px; font-weight: 680; text-decoration: none; }
 nav a:hover { color: var(--blue); }
@@ -84,7 +86,7 @@ h3 { line-height: 1.12; }
 .button { align-items: center; border: 1px solid transparent; border-radius: 10px; display: inline-flex; font-size: 14px; font-weight: 760; gap: 8px; min-height: 44px; padding: 0 16px; text-decoration: none; }
 .button svg, .text-link svg, .layout-open svg { height: 16px; width: 16px; }
 .button-primary { background: var(--blue); color: white; }
-.button-primary:hover { background: #045773; }
+.button-primary:hover { background: color-mix(in srgb, var(--fiskwise-teal), var(--fiskwise-navy) 14%); }
 .button-secondary { background: white; border-color: var(--line); }
 .button-secondary:hover { border-color: var(--sky); }
 .text-link { align-items: center; color: var(--blue); display: inline-flex; font-size: 14px; font-weight: 760; gap: 7px; padding: 10px; text-decoration: none; }
@@ -130,7 +132,7 @@ h3 { line-height: 1.12; }
 .layout-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
 .layout-card { appearance: none; background: white; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 4px 16px rgba(23, 48, 66, .04); color: var(--ink); cursor: pointer; overflow: hidden; padding: 0; text-align: left; transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease; width: 100%; }
 .layout-card:hover { border-color: var(--sky); box-shadow: 0 14px 34px rgba(23, 48, 66, .1); transform: translateY(-2px); }
-.layout-image { aspect-ratio: 16 / 9; background: #eef2f0; border-bottom: 1px solid var(--line); display: block; overflow: hidden; }
+.layout-image { aspect-ratio: 16 / 9; background: color-mix(in srgb, var(--fiskwise-bg), var(--fiskwise-border) 35%); border-bottom: 1px solid var(--line); display: block; overflow: hidden; }
 .layout-image img { display: block; height: 100%; object-fit: cover; width: 100%; }
 .layout-content { display: flex; flex-direction: column; min-height: 260px; padding: 24px; }
 .tag { color: var(--blue); font-size: 11px; font-weight: 820; letter-spacing: .09em; text-transform: uppercase; }
@@ -163,7 +165,7 @@ h3 { line-height: 1.12; }
 .quickstart-card > p:not(.eyebrow) { color: var(--muted); line-height: 1.55; }
 .quickstart-card pre { background: var(--ink); border-radius: 9px; color: #eef8f8; font-size: 12px; line-height: 1.55; margin: 26px 0 0; overflow-x: auto; padding: 18px; white-space: pre-wrap; }
 
-.skills-section { background: #eaf0ef; max-width: none; padding-left: max(32px, calc((100vw - 1176px) / 2)); padding-right: max(32px, calc((100vw - 1176px) / 2)); }
+.skills-section { background: #e7f2f3; max-width: none; padding-left: max(32px, calc((100vw - 1176px) / 2)); padding-right: max(32px, calc((100vw - 1176px) / 2)); }
 .skills-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); margin-top: 44px; }
 .skill-card { background: white; border: 1px solid var(--line); border-radius: 14px; padding: 28px; }
 .skill-label { color: var(--coral); display: block; font-size: 11px; font-weight: 820; letter-spacing: .09em; margin-bottom: 48px; text-transform: uppercase; }
@@ -214,10 +216,15 @@ footer { border-top: 1px solid var(--line); color: var(--muted); display: flex; 
 
 @media (max-width: 700px) {
   .site-header { padding: 16px 20px; }
+  .brand { gap: 8px; }
+  .brand-wordmark { height: 28px; }
+  .brand-product { font-size: 12px; }
   nav a:not(:last-child) { display: none; }
   .hero, .section { padding-left: 20px; padding-right: 20px; }
   .hero { gap: 48px; min-height: auto; padding-bottom: 70px; }
   h1 { font-size: 46px; }
+  .site-header { padding-left: 12px; padding-right: 12px; }
+  .brand-product { font-size: 11px; }
   .hero-actions { align-items: stretch; flex-direction: column; }
   .button, .text-link { justify-content: center; }
   .slide-preview { transform: none; }

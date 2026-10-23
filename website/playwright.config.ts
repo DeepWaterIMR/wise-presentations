@@ -10,7 +10,7 @@ export default defineConfig({
   reporter: "line",
   webServer: {
     command: "node scripts/serve-pages.mjs",
-    url: "http://127.0.0.1:4173/presentation-template/",
+    url: "http://127.0.0.1:4173/wise-presentations/",
     reuseExistingServer: !process.env.CI,
   },
   use: {

@@ -6,7 +6,7 @@ Shared rules for scientific presentation projects based on this template. Task p
 
 - Use `make-presentation` to plan or build a new presentation, make substantive slide revisions, or reconnect slides to changed analysis outputs.
 - Use `review-presentation` when an approved or existing presentation needs rendering, screenshots, visual correction, or delivery checks.
-- In this template repository only, use `maintain-presentation-template` when changing supported layouts or features, the catalogue, learning hub, installer, or validation workflow.
+- In this wise-presentations repository only, use `maintain-presentation-template` when changing supported layouts or features, the catalogue, learning hub, installer, or validation workflow.
 
 ## Writing and approval
 
@@ -14,7 +14,7 @@ Shared rules for scientific presentation projects based on this template. Task p
 - Keep visible slide text concise, professional, factual, and free of filler or promotional language.
 - Give each content slide a complete declarative sentence title that states its main message. Do not end the title with a full stop. Title and section slides are exceptions.
 - Do not invent text, results, or examples merely to fill space in a project presentation.
-- End every presentation with a `.credit-note` line on the final slide: "The slides were made with [Quarto](https://quarto.org/) using [presentation-template](https://deepwaterimr.github.io/presentation-template/) and <model>." The line reads `<model>` from `project.ai_model` in `presentation.yml`. Set it to a concise name for the model you, the agent building the presentation, are running as: product and model only, no version IDs or dates (for example "Claude Opus 5.5" or "Codex, GPT-6.1 Sol"). Check your own system information for the name; never copy it from this template, another deck, or another agent. When a different agent substantially revises the deck, it updates the field to its own model.
+- End every presentation with a `.credit-note` line on the final slide: "The slides were made with [Quarto](https://quarto.org/) using [wise-presentations](https://deepwaterimr.github.io/wise-presentations/) and <model>." The line reads `<model>` from `project.ai_model` in `presentation.yml`. Set it to a concise name for the model you, the agent building the presentation, are running as: product and model only, no version IDs or dates (for example "Claude Opus 5.5" or "Codex, GPT-6.1 Sol"). Check your own system information for the name; never copy it from this template, another deck, or another agent. When a different agent substantially revises the deck, it updates the field to its own model.
 - Before editing a presentation, read `README.md`, `slide-plan.md`, and `presentation.yml`, then learn the surrounding analysis project.
 - For a new presentation, discuss audience, duration, purpose, meeting context, one-sentence story, and output filename; use `presentation.html` by default.
 - Draft and show `slide-plan.md`, then wait for explicit approval before expanding `presentation.qmd` or rendering.
