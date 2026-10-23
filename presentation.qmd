@@ -48,7 +48,7 @@ params:
 packages <- c(
   ggplot2 = NA,
   tibble = NA,
-  ggOceanMaps = NA,
+  ggOceanMaps = "MikkoVihtakari/ggOceanMaps",
   ragg = NA,
   systemfonts = NA
 )

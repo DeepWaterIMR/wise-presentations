@@ -146,3 +146,17 @@ conflict <- run_global_installer(c("--target", global_target), expected_status =
 if (!grepl("Skill destination already exists", conflict, fixed = TRUE)) stop("Global installer did not protect existing skills.")
 run_global_installer(c("--target", global_target, "--force"))
 message("Global skill installer contract passed: three relocatable packages, conflict protection, and forced replacement.")
+
+# Exercise the starter's actual declaration against the shared helper's API. No packages
+# are loaded or installed: injected functions verify the contract before a render.
+setup_start <- grep("^```\\{r\\}", presentation_source)[[1L]]
+setup_end <- which(seq_along(presentation_source) > setup_start & presentation_source == "```")[[1L]]
+setup_expressions <- parse(text = presentation_source[(setup_start + 1L):(setup_end - 1L)])
+preflight <- new.env(parent = baseenv())
+eval(setup_expressions[[1L]], envir = preflight)
+source(file.path(repo_root, "R", "package_setup.R"), local = preflight)
+preflight$package_setup(preflight$packages, project_root = tempdir(),
+  package_available = function(package) TRUE,
+  installer = function(packages) stop("Preflight must not install packages"),
+  attach = function(packages) stopifnot(length(packages) == 5L))
+cat("Starter package declaration preflight passed.\n")
