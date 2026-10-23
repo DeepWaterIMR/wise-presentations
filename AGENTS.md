@@ -1,5 +1,9 @@
 # Presentation template contract
 
+wise-presentations is part of [Fiskwise](https://deepwaterimr.github.io/fiskwise/). See the
+[ecosystem repository](https://github.com/DeepWaterIMR/fiskwise) for the canonical pack
+names and migration guide. Existing skill IDs and scientific interfaces remain stable.
+
 Shared rules for scientific presentation projects based on this template. Task procedures live in the focused skills and `agent-workflows/`.
 
 ## Skill routing

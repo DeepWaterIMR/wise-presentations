@@ -1,3 +1,5 @@
+[![Part of Fiskwise](https://deepwaterimr.github.io/fiskwise/assets/part-of-fiskwise.svg)](https://deepwaterimr.github.io/fiskwise/)
+
 # wise-presentations
 
 A Quarto RevealJS template for scientific presentations. It provides predefined slide layouts, project-relative data interfaces, and a render-and-review workflow.
