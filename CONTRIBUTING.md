@@ -22,6 +22,16 @@ Run the repository validation path described in [docs/architecture.md](docs/arch
 
 Do not commit generated HTML, QA screenshots, contact sheets, local absolute paths, credentials, private URLs, unpublished project details, or dependency caches.
 
+## Fiskwise version policy
+
+Follow the [shared Fiskwise version policy](https://github.com/DeepWaterIMR/fiskwise/blob/main/docs/VERSIONING.md).
+Every ordinary authored commit increments the patch by 0.0.1 and stamps the current date
+(`VERSION` for knowledge packs; `DESCRIPTION` `Version` and `Date` for R packages).
+Only an explicit user request may set `FISKWISE_VERSION_BUMP=minor|major`. Never choose one
+autonomously or create tags/releases automatically. Let `.githooks/pre-commit` enforce the
+policy, preserve other custom hooks, and replay existing stamps unchanged during merges or
+rebases.
+
 ## Report problems
 
 Use the issue templates and include the smallest reproducible example. For visual problems, name the slide layout, canvas size, output format, and whether the problem appears in the source presentation, rendered HTML, PDF, or screenshot capture.
