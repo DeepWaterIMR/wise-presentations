@@ -1,7 +1,7 @@
 [![Part of Fiskwise](https://deepwaterimr.github.io/fiskwise/assets/part-of-fiskwise.svg)](https://deepwaterimr.github.io/fiskwise/)
 
 <!-- version -->
-**Version 0.1.1** (2026-10-24)
+**Version 0.1.2** (2026-10-25)
 <!-- /version -->
 
 # wise-presentations
@@ -12,7 +12,7 @@ A Quarto RevealJS template for scientific presentations. It provides predefined 
 
 **Repository:** <https://github.com/DeepWaterIMR/wise-presentations>
 
-Part of [Fiskwise](https://deepwaterimr.github.io/fiskwise/), the shared home for [wise-writing](https://github.com/DeepWaterIMR/wise-writing), [index-wise](https://github.com/DeepWaterIMR/index-wise), and [spict-wise](https://github.com/DeepWaterIMR/spict-wise).
+An optional [Fiskwise](https://deepwaterimr.github.io/fiskwise/) add-on. The ecosystem's core pack is [wise-writing](https://github.com/DeepWaterIMR/wise-writing); add wise-presentations when a project needs presentation planning, layouts, or visual review.
 
 ## What the template provides
 
@@ -38,11 +38,11 @@ The `make-presentation` skill covers orientation, discussion, planning, and cons
 
 ## Install manually
 
-### Fiskwise core bootstrap
+### Fiskwise setup
 
-When installed through Fiskwise, the `make-presentation` and `review-presentation` skill packages can be copied directly into an agent's skill folder. This core knowledge install does not require R, Quarto, or an R package library, and it does not install modeling software or optional R packages. Keep those tools opt-in and add them only when a project needs them and the user approves.
+Start with wise-writing as the core pack. Add wise-presentations as an optional pack when presentation skills are needed. The pack-specific skills do not require R, Quarto, or an R package library, and the knowledge install does not install modeling software or optional R packages.
 
-The core skill install does not create a presentation project. Once R is available, use the project installer below if you want the starter files in an analysis repository. The Quarto CLI is installed separately from the R package `quarto`; the R package is an interface to the CLI, not a replacement for it.
+The skills install does not create a presentation project. Once R is available, use the project installer below if you want starter files in an analysis repository. The Quarto CLI is installed separately from the R package `quarto`; the R package is an interface to the CLI, not a replacement for it.
 
 ### Standalone install from this repository
 
@@ -60,7 +60,7 @@ To install the three skill packages globally for your user account, run this fro
 Rscript scripts/install_global_skills.R
 ```
 
-This installs `make-presentation`, `review-presentation`, and `maintain-presentation-template` under `~/.agents/skills/`. Each skill carries its workflow reference, so it works outside the repository checkout. Existing skill folders are protected; pass `--force` only when you intend to replace those three packages. Use `--target` to stage or inspect an installation elsewhere.
+This installs `make-presentation`, `review-presentation`, `maintain-presentation-template`, `wise-presentations-install`, and `wise-presentations-update` under `~/.agents/skills/`. Each skill carries its workflow reference, so it works outside the repository checkout. Existing skill folders are protected; pass `--force` only when you intend to replace these five packages. Use `--target` to stage or inspect an installation elsewhere.
 
 This standalone installer is written in base R, so it requires `Rscript`; the Fiskwise core bootstrap uses filesystem copies when R is not yet available. Neither route installs R, Quarto, R packages, or model software.
 

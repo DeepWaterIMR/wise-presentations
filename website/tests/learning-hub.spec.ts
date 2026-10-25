@@ -142,3 +142,12 @@ test("sampler opens on its title and figure tabs switch visible plots", async ({
     expect(Math.max(...boxes.map((box) => box.width)) - Math.min(...boxes.map((box) => box.width))).toBeLessThan(1);
   }
 });
+
+test("catalogue is present before JavaScript runs", async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto("http://127.0.0.1:4173/wise-presentations/");
+  await expect(page.locator(".layout-card")).toHaveCount(layouts.length);
+  await expect(page.locator(".feature-card")).toHaveCount(entries.length - layouts.length);
+  await context.close();
+});

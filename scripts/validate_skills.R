@@ -7,7 +7,9 @@ if (!requireNamespace("yaml", quietly = TRUE)) {
 expected <- list(
   "make-presentation" = "agent-workflows/make-presentation.md",
   "review-presentation" = "agent-workflows/review-presentation.md",
-  "maintain-presentation-template" = "agent-workflows/maintain-presentation-template.md"
+  "maintain-presentation-template" = "agent-workflows/maintain-presentation-template.md",
+  "wise-presentations-install" = "agent-workflows/wise-presentations-install.md",
+  "wise-presentations-update" = "agent-workflows/wise-presentations-update.md"
 )
 
 read_frontmatter <- function(path) {
@@ -54,4 +56,4 @@ for (system in c(".agents", ".claude")) {
   }
 }
 
-message("Validated 6 skill shims and 3 shared workflows.")
+message("Validated 10 skill shims and 5 shared workflows.")

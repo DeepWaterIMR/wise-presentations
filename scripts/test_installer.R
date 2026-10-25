@@ -130,7 +130,10 @@ run_global_installer <- function(arguments, expected_status = 0L) {
   output
 }
 run_global_installer(c("--target", global_target))
-installed_skills <- c("make-presentation", "review-presentation", "maintain-presentation-template")
+installed_skills <- c(
+  "make-presentation", "review-presentation", "maintain-presentation-template",
+  "wise-presentations-install", "wise-presentations-update"
+)
 for (skill in installed_skills) {
   package <- file.path(global_target, skill)
   if (!file.exists(file.path(package, "SKILL.md")) || !file.exists(file.path(package, "references", "workflow.md"))) {
@@ -145,7 +148,7 @@ if (!file.exists(file.path(global_target, "unrelated-skill.txt"))) stop("Global 
 conflict <- run_global_installer(c("--target", global_target), expected_status = 1L)
 if (!grepl("Skill destination already exists", conflict, fixed = TRUE)) stop("Global installer did not protect existing skills.")
 run_global_installer(c("--target", global_target, "--force"))
-message("Global skill installer contract passed: three relocatable packages, conflict protection, and forced replacement.")
+message("Global skill installer contract passed: five relocatable skills, conflict protection, and forced replacement.")
 
 # Exercise the starter's actual declaration against the shared helper's API. No packages
 # are loaded or installed: injected functions verify the contract before a render.

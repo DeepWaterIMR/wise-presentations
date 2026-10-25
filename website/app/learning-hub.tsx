@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, Copy, ExternalLink, Play, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 
-type CatalogueEntry = {
+export type CatalogueEntry = {
   id: string;
   kind: "layout" | "feature";
   name: string;
@@ -21,35 +21,6 @@ type CatalogueEntry = {
   snippet: string;
 };
 
-type Catalogue = {
-  entries: CatalogueEntry[];
-};
-
-const layoutChoices = [
-  { evidence: "One empirical figure", layout: "Text + figure", code: ".text-figure", id: "text-figure", description: "Use a short interpretation column and give the figure about 70% of the content area." },
-  { evidence: "Dense or faceted figure", layout: "Wide figure", code: ".wide-figure", id: "wide-figure", description: "Use a narrow interpretation column and reserve nearly the full width for the figure." },
-  { evidence: "Tall or square figure", layout: "Edge figure", code: ".edge-figure", id: "edge-figure", description: "Fill the right half from top to bottom while keeping the title and interpretation on the left." },
-  { evidence: "Related figures for discussion", layout: "Figure tabs", code: ".panel-tabset", id: "figure-tabs", description: "Switch among full-size supporting figures with named tabs; give the main result its own slide." },
-  { evidence: "Spatial result", layout: "Map + context", code: ".map-context", id: "map-context", description: "Keep the mapped area dominant and retain only the geographic context needed to interpret it." },
-  { evidence: "Exact values", layout: "Scenario table", code: ".scenario-table", id: "scenario-table", description: "Use a focused full-width table when exact scenario values matter more than graphical shape." },
-  { evidence: "Concept or mechanism", layout: "Concept + image", code: ".concept-image", id: "concept-image", description: "Pair the explanation with a photograph, schematic, map, or representative scientific figure." },
-  { evidence: "Principal conclusion", layout: "Conclusion + figure", code: ".conclusion-figure", id: "conclusion-figure", description: "Keep the conclusion and its most relevant supporting visual visible during discussion." },
-  { evidence: "Several closing conclusions", layout: "Conclusion cards", code: ".conclusion-cards", id: "conclusion-cards", description: "Keep short conclusions on white cards above an optional closing graphic, followed by the production credit." },
-];
-
-const workflow = [
-  { number: "01", title: "Orient", description: "Read the analysis project and identify the available results, figures, and data-loading interfaces." },
-  { number: "02", title: "Plan", description: "Agree on the audience, purpose, sequence of claims, supporting evidence, and output name." },
-  { number: "03", title: "Build", description: "Generate displayed values and figures from stable project-relative inputs." },
-  { number: "04", title: "Review", description: "Render the presentation, inspect every slide, correct layout problems, and check the final file size." },
-];
-
-const skills = [
-  { name: "make-presentation", label: "Create", description: "Orient to a scientific project, agree on the slide plan, and build the presentation from rerenderable inputs." },
-  { name: "review-presentation", label: "Review", description: "Render an existing presentation, inspect every slide, correct visual problems, and verify delivery files." },
-  { name: "maintain-presentation-template", label: "Maintain", description: "Add layouts, update the catalogue and learning hub, and keep installer and validation checks aligned." },
-];
-
 function resolveEntryFromHash(entries: CatalogueEntry[]) {
   const prefix = "#layout/";
   if (!window.location.hash.startsWith(prefix)) return null;
@@ -57,40 +28,18 @@ function resolveEntryFromHash(entries: CatalogueEntry[]) {
   return entries.find((entry) => entry.id === id) ?? null;
 }
 
-export default function LearningHub() {
-  const [entries, setEntries] = useState<CatalogueEntry[]>([]);
-  const [loadError, setLoadError] = useState("");
+export default function LearningHub({ initialEntries }: { initialEntries: CatalogueEntry[] }) {
+  const [entries] = useState(initialEntries);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("All");
-  const [selected, setSelected] = useState<CatalogueEntry | null>(null);
+  const subscribeToHash = useCallback((listener: () => void) => {
+    window.addEventListener("hashchange", listener);
+    return () => window.removeEventListener("hashchange", listener);
+  }, []);
+  const getSelectedFromHash = useCallback(() => resolveEntryFromHash(entries), [entries]);
+  const selected = useSyncExternalStore(subscribeToHash, getSelectedFromHash, () => null);
   const [copied, setCopied] = useState(false);
   const dialogTitleRef = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {
-    let active = true;
-    fetch("./layouts.json")
-      .then((response) => {
-        if (!response.ok) throw new Error("The layout catalogue could not be loaded.");
-        return response.json() as Promise<Catalogue>;
-      })
-      .then((catalogue) => {
-        if (!active) return;
-        setEntries(catalogue.entries);
-        setSelected(resolveEntryFromHash(catalogue.entries));
-      })
-      .catch((error: Error) => {
-        if (active) setLoadError(error.message);
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
-
-  useEffect(() => {
-    const syncHash = () => setSelected(resolveEntryFromHash(entries));
-    window.addEventListener("hashchange", syncHash);
-    return () => window.removeEventListener("hashchange", syncHash);
-  }, [entries]);
 
   const layouts = useMemo(() => entries.filter((entry) => entry.kind === "layout"), [entries]);
   const features = useMemo(() => entries.filter((entry) => entry.kind === "feature"), [entries]);
@@ -110,14 +59,14 @@ export default function LearningHub() {
 
   function openEntry(entry: CatalogueEntry) {
     setCopied(false);
-    setSelected(entry);
     window.history.replaceState(null, "", `#layout/${encodeURIComponent(entry.id)}`);
+    window.dispatchEvent(new HashChangeEvent("hashchange"));
   }
 
   function closeEntry() {
-    setSelected(null);
     setCopied(false);
     window.history.replaceState(null, "", "#layouts");
+    window.dispatchEvent(new HashChangeEvent("hashchange"));
   }
 
   async function copySnippet() {
@@ -136,9 +85,8 @@ export default function LearningHub() {
           <span className="brand-product">wise-presentations</span>
         </Link>
         <nav aria-label="Primary navigation">
-          <Link href="#choose">Choose a layout</Link>
           <Link href="#layouts">Layouts</Link>
-          <Link href="#start">Get started</Link>
+          <Link href="#start">Setup</Link>
           <a href="https://github.com/DeepWaterIMR/wise-presentations">GitHub</a>
           <a href="https://deepwaterimr.github.io/fiskwise/">Fiskwise</a>
         </nav>
@@ -155,9 +103,9 @@ export default function LearningHub() {
             <a className="text-link" href="https://github.com/DeepWaterIMR/wise-presentations"><ExternalLink aria-hidden="true" /> View repository</a>
           </div>
           <div className="hero-feature-points" aria-label="Template features">
-            <span>Message titles without a closing full stop</span>
-            <span>Figures generated from analysis outputs</span>
-            <span>Rendered-slide review</span>
+            <span>Quarto and RevealJS</span>
+            <span>17 reusable layouts</span>
+            <span>Source-linked examples</span>
           </div>
         </div>
         <div className="hero-preview" aria-label="Example scientific slide preview">
@@ -178,27 +126,6 @@ export default function LearningHub() {
             </div>
             <div className="slide-section">RESULTS</div>
           </div>
-        </div>
-      </section>
-
-      <section className="section choice-section" id="choose">
-        <div className="section-heading">
-          <p className="eyebrow">Select a layout</p>
-          <h2>Use the claim and its supporting evidence to select the composition.</h2>
-          <p>Identify the figure, image, table, or explanation that supports the slide title, then choose a layout that gives it sufficient space.</p>
-        </div>
-        <div className="choice-grid">
-          {layoutChoices.map((choice) => (
-            <button className="choice-card" key={choice.id} type="button" onClick={() => {
-              const entry = entries.find((candidate) => candidate.id === choice.id);
-              if (entry) openEntry(entry);
-            }}>
-              <span>{choice.evidence}</span>
-              <h3>{choice.layout}</h3>
-              <code>{choice.code}</code>
-              <p>{choice.description}</p>
-            </button>
-          ))}
         </div>
       </section>
 
@@ -225,8 +152,6 @@ export default function LearningHub() {
           </div>
         </div>
 
-        {loadError ? <p className="state-message error-message">{loadError}</p> : null}
-        {!loadError && !entries.length ? <p className="state-message">Loading the rendered layout catalogue…</p> : null}
         {layouts.length > 0 && visibleLayouts.length === 0 ? <p className="state-message">No layouts match this search. Try another evidence type or category.</p> : null}
 
         <div className="layout-grid">
@@ -269,28 +194,24 @@ export default function LearningHub() {
 
       <section className="section workflow-section" id="start">
         <div className="section-heading">
-          <p className="eyebrow">Reproducible workflow</p>
-          <h2>Presentation inputs can remain connected to the analysis project.</h2>
-          <p>wise-presentations separates scientific computation from slide composition while keeping displayed results reproducible.</p>
-        </div>
-        <div className="workflow-grid">
-          {workflow.map((step) => (
-            <article className="workflow-step" key={step.number}>
-              <span>{step.number}</span>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-            </article>
-          ))}
+          <p className="eyebrow">Setup</p>
+          <h2>Start with wise-writing; add presentation workflows when you need them.</h2>
+          <p>wise-writing is the Fiskwise core. wise-presentations is an optional add-on for planning, building, and reviewing Quarto slide decks.</p>
         </div>
         <p className="authoring-note">Use transparent plot, panel, and legend backgrounds; add <code>transparent_bg()</code> after a package theme. End the final slide with a <code>.credit-note</code> naming Quarto, wise-presentations, and the building agent’s model from <code>project.ai_model</code> in <code>presentation.yml</code>.</p>
-        <p className="authoring-note">For agent skills across packs, install the <a href="https://github.com/DeepWaterIMR/fiskwise">Fiskwise ecosystem</a> first: its core setup installs wise-writing and wise-presentations skills without installing R, Quarto, R packages, or model software. The direct project starter below is separate and copies the presentation files plus a self-contained shared R package helper. Missing R packages are not installed during rendering by default; set <code>install_missing_packages: true</code> in <code>presentation.qmd</code> only after you authorize installation for that run. A project with <code>renv</code> remains managed by renv. Install the Quarto CLI separately from the R package <code>quarto</code>.</p>
+        <p className="authoring-note">Agent skill setup does not install R, Quarto, R packages, or model software. Standalone install and update skills are available for this pack. The direct project starter copies files into an existing analysis project. Missing R packages are not installed by default; <code>renv</code> projects remain managed by renv. Install the Quarto CLI separately from the R package <code>quarto</code>.</p>
         <div className="quickstart-grid">
           <article className="quickstart-card featured">
             <p className="eyebrow">Fiskwise core</p>
-            <h3>Install shared writing and presentation skills for your agent.</h3>
-            <p>The ecosystem installer sets up core research guidance and can add optional workflow packs when needed. It does not install R packages or modeling software.</p>
-            <pre><code>Install Fiskwise from https://github.com/DeepWaterIMR/fiskwise with wise-writing and wise-presentations as the core packs. Do not install optional R packages or modeling software.</code></pre>
-            <p>Then use <code>make-presentation</code> with the analysis project and destination folder. Review the analysis, prepare <code>slide-plan.md</code>, and wait for approval before building.</p>
+            <h3>Install wise-writing as the core research pack.</h3>
+            <p>Start with shared scientific writing, R, and Quarto guidance. Presentation workflows remain optional.</p>
+            <pre><code>install https://github.com/DeepWaterIMR/fiskwise</code></pre>
+          </article>
+          <article className="quickstart-card">
+            <p className="eyebrow">Optional add-on</p>
+            <h3>Add wise-presentations when you are ready to make a deck.</h3>
+            <p>Install the <code>make-presentation</code> and <code>review-presentation</code> skills alongside wise-writing.</p>
+            <pre><code>install https://github.com/DeepWaterIMR/wise-presentations</code></pre>
           </article>
           <article className="quickstart-card">
             <p className="eyebrow">Direct project starter</p>
@@ -299,23 +220,6 @@ export default function LearningHub() {
   --target "/path/to/project"`}</code></pre>
             <p>The default destination is <code>docs/presentation/</code>. This copies files into one project; it does not install global skills. Existing project-level agent guidance is not overwritten.</p>
           </article>
-        </div>
-      </section>
-
-      <section className="section skills-section" id="skills">
-        <div className="section-heading">
-          <p className="eyebrow">Focused agent skills</p>
-          <h2>Task-specific procedures are separated from stable presentation rules.</h2>
-          <p>This limits automatic routing to the procedures relevant to creating, reviewing, or maintaining a presentation.</p>
-        </div>
-        <div className="skills-grid">
-          {skills.map((skill) => (
-            <article className="skill-card" key={skill.name}>
-              <span className="skill-label">{skill.label}</span>
-              <code>{skill.name}</code>
-              <p>{skill.description}</p>
-            </article>
-          ))}
         </div>
       </section>
 

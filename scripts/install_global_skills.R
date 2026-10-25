@@ -1,4 +1,4 @@
-# Install this repository's three skill packages into the user-level Codex
+# Install this repository's skill packages into the user-level Codex
 # skill directory. Each package carries its workflow reference, so it is
 # independent of the checkout after installation.
 
@@ -14,7 +14,10 @@ script_arg <- sub("^--file=", "", commandArgs(trailingOnly = FALSE)[grep("^--fil
 script_arg <- gsub("~\\+~", " ", script_arg)
 repo_root <- normalizePath(file.path(dirname(normalizePath(script_arg, mustWork = TRUE)), ".."), mustWork = TRUE)
 source_root <- file.path(repo_root, ".agents", "skills")
-skills <- c("make-presentation", "review-presentation", "maintain-presentation-template")
+skills <- c(
+  "make-presentation", "review-presentation", "maintain-presentation-template",
+  "wise-presentations-install", "wise-presentations-update"
+)
 target <- path.expand(value_after("--target", "~/.agents/skills"))
 force <- "--force" %in% args
 
@@ -25,7 +28,7 @@ destinations <- file.path(target, skills)
 conflicts <- destinations[dir.exists(destinations) | file.exists(destinations)]
 if (length(conflicts) && !force) {
   stop(
-    "Skill destination already exists; review it or rerun with --force to replace only these three skill folders:\n  ",
+    "Skill destination already exists; review it or rerun with --force to replace only these owned skill folders:\n  ",
     paste(conflicts, collapse = "\n  ")
   )
 }

@@ -8,6 +8,8 @@ Shared rules for scientific presentation projects based on this template. Task p
 
 ## Skill routing
 
+- For standalone setup/update, use `wise-presentations-install` or `wise-presentations-update`. Retain the checkout for installers; resolve it from `~/.wise-presentations/config.json` or the Fiskwise registry.
+
 - Use `make-presentation` to plan or build a new presentation, make substantive slide revisions, or reconnect slides to changed analysis outputs.
 - Use `review-presentation` when an approved or existing presentation needs rendering, screenshots, visual correction, or delivery checks.
 - In this wise-presentations repository only, use `maintain-presentation-template` when changing supported layouts or features, the catalogue, learning hub, installer, or validation workflow.
