@@ -79,11 +79,13 @@ export default function LearningHub({ initialEntries }: { initialEntries: Catalo
   return (
     <main>
       <header className="site-header">
-        <Link className="brand" href="#top" aria-label="wise-presentations home">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="brand-wordmark" src="./fiskwise/wordmark.svg" alt="Fiskwise" />
-          <span className="brand-product">wise-presentations</span>
-        </Link>
+        <div className="brand">
+          <a href="https://deepwaterimr.github.io/fiskwise/" aria-label="Fiskwise home">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="brand-wordmark" src="./fiskwise/wordmark.svg" alt="Fiskwise" />
+          </a>
+          <Link className="brand-product" href="#top" aria-label="wise-presentations home">wise-presentations</Link>
+        </div>
         <nav aria-label="Primary navigation">
           <Link href="#layouts">Layouts</Link>
           <Link href="#start">Setup</Link>

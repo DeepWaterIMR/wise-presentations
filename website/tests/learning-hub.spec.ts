@@ -17,6 +17,9 @@ test("catalogue, deep links, dialog, copy, and responsive layout", async ({ page
   await expect(page.getByRole("img", { name: "Fiskwise" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Fiskwise", exact: true })).toHaveAttribute("href", "https://deepwaterimr.github.io/fiskwise/");
 
+  await expect(page.locator(".site-header").getByRole("link", { name: "Fiskwise home", exact: true })).toHaveAttribute("href", "https://deepwaterimr.github.io/fiskwise/");
+  await expect(page.getByRole("link", { name: "wise-presentations home", exact: true })).toHaveAttribute("href", "#top");
+
   const cards = page.locator(".layout-card");
   await expect(cards).toHaveCount(layouts.length);
   expect(await cards.evaluateAll((elements) => elements.map((element) => element.getAttribute("aria-label")))).toEqual(layouts.map((entry) => `Inspect ${entry.name}`));
