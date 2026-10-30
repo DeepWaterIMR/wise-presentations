@@ -329,6 +329,126 @@ Use `.text-figure` for a short interpretation beside one primary chart or map. M
 :::
 <!-- catalogue:end text-figure -->
 
+<!-- catalogue:start prompt-output -->
+## {#prompt-output .prompt-output aria-label="A prompt produces an illustrative survey-index figure"}
+
+::::: {.prompt-output-body}
+:::: {.prompt-dialogue}
+::: {.prompt-bubble}
+::: {.bubble-label}
+Prompt
+:::
+
+“Plot the survey index with 95% uncertainty.”
+:::
+
+::: {.reply-bubble}
+::: {.bubble-label}
+`r prompt_reply_label(cfg$project$ai_model)`
+:::
+
+I plotted the index and shaded the 95% uncertainty interval.
+:::
+::::
+
+:::: {.prompt-output-visual}
+```{r}
+#| label: plot-prompt-output
+#| fig-width: 9.4
+#| fig-height: 7.3
+#| out-width: 100%
+#| fig-alt: "Simulated relative biomass index from 2014 to 2025, with points, a line, and a shaded uncertainty interval."
+#| fig-cap: "Relative biomass index by year. Points and line show estimates; shading shows the 95% uncertainty interval. Values are simulated."
+plot_prompt_output_example()
+```
+::::
+:::::
+
+::: {.notes}
+Use `.prompt-output` for the default beside arrangement; add `.prompt-output-above` or `.prompt-output-floating` for the alternatives. The empty heading hides the title while retaining a stable slide anchor; write a declarative heading when a visible title helps. Use the responding model's own concise name from `project.ai_model`, with “Agent reply” only when unavailable. The reply states the action taken in one sentence; the caption explains how to read the output. Prefer graphical outputs, reuse rerenderable analysis results, and never describe an estimated or simulated preview as an executed analysis. This sampler uses simulated values, not Biotic data or fitted model results. For scientific figures, recommend a short caption when the axes and legend leave needed context; omit `fig-cap` when unnecessary. In the floating variant, check both bubbles against data, axes, legends, and the caption and switch to beside or above if no empty region is available. Detailed methods belong in notes.
+:::
+<!-- catalogue:end prompt-output -->
+
+<!-- catalogue:start prompt-output-above -->
+## {#prompt-output-above .prompt-output .prompt-output-above aria-label="A prompt produces an illustrative survey-index figure"}
+
+::::: {.prompt-output-body}
+:::: {.prompt-dialogue}
+::: {.prompt-bubble}
+::: {.bubble-label}
+Prompt
+:::
+
+“Plot the survey index with 95% uncertainty.”
+:::
+
+::: {.reply-bubble}
+::: {.bubble-label}
+`r prompt_reply_label(cfg$project$ai_model)`
+:::
+
+I plotted the index and shaded the 95% uncertainty interval.
+:::
+::::
+
+:::: {.prompt-output-visual}
+```{r}
+#| label: plot-prompt-output-above
+#| fig-width: 14.5
+#| fig-height: 5.6
+#| out-width: 100%
+#| fig-alt: "Simulated relative biomass index from 2014 to 2025, with points, a line, and a shaded uncertainty interval."
+#| fig-cap: "Relative biomass index by year. Points and line show estimates; shading shows the 95% uncertainty interval. Values are simulated."
+plot_prompt_output_example()
+```
+::::
+:::::
+
+::: {.notes}
+Use `.prompt-output` for the default beside arrangement; add `.prompt-output-above` or `.prompt-output-floating` for the alternatives. The empty heading hides the title while retaining a stable slide anchor; write a declarative heading when a visible title helps. Use the responding model's own concise name from `project.ai_model`, with “Agent reply” only when unavailable. The reply states the action taken in one sentence; the caption explains how to read the output. Prefer graphical outputs, reuse rerenderable analysis results, and never describe an estimated or simulated preview as an executed analysis. This sampler uses simulated values, not Biotic data or fitted model results. For scientific figures, recommend a short caption when the axes and legend leave needed context; omit `fig-cap` when unnecessary. In the floating variant, check both bubbles against data, axes, legends, and the caption and switch to beside or above if no empty region is available. Detailed methods belong in notes.
+:::
+<!-- catalogue:end prompt-output-above -->
+
+<!-- catalogue:start prompt-output-floating -->
+## {#prompt-output-floating .prompt-output .prompt-output-floating aria-label="A prompt produces an illustrative survey-index figure"}
+
+::::: {.prompt-output-body}
+:::: {.prompt-dialogue}
+::: {.prompt-bubble}
+::: {.bubble-label}
+Prompt
+:::
+
+“Plot the survey index with 95% uncertainty.”
+:::
+
+::: {.reply-bubble}
+::: {.bubble-label}
+`r prompt_reply_label(cfg$project$ai_model)`
+:::
+
+I plotted the index and shaded the 95% uncertainty interval.
+:::
+::::
+
+:::: {.prompt-output-visual}
+```{r}
+#| label: plot-prompt-output-floating
+#| fig-width: 14.5
+#| fig-height: 7.3
+#| out-width: 100%
+#| fig-alt: "Simulated relative biomass index from 2014 to 2025, with points, a line, and a shaded uncertainty interval."
+#| fig-cap: "Relative biomass index by year. Points and line show estimates; shading shows the 95% uncertainty interval. Values are simulated."
+plot_prompt_output_example()
+```
+::::
+:::::
+
+::: {.notes}
+Use `.prompt-output` for the default beside arrangement; add `.prompt-output-above` or `.prompt-output-floating` for the alternatives. The empty heading hides the title while retaining a stable slide anchor; write a declarative heading when a visible title helps. Use the responding model's own concise name from `project.ai_model`, with “Agent reply” only when unavailable. The reply states the action taken in one sentence; the caption explains how to read the output. Prefer graphical outputs, reuse rerenderable analysis results, and never describe an estimated or simulated preview as an executed analysis. This sampler uses simulated values, not Biotic data or fitted model results. For scientific figures, recommend a short caption when the axes and legend leave needed context; omit `fig-cap` when unnecessary. In the floating variant, check both bubbles against data, axes, legends, and the caption and switch to beside or above if no empty region is available. Detailed methods belong in notes.
+:::
+<!-- catalogue:end prompt-output-floating -->
+
 <!-- catalogue:start layout-guide -->
 ## The evidence type determines which slide layout is appropriate {#layout-guide .layout-guide data-section="Authoring reference"}
 

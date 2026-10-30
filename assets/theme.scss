@@ -409,6 +409,192 @@ $presentation-font-size-root: 30px;
   text-align: left;
 }
 
+/* Prompt + output: a small exchange beside, above, or in empty areas of one
+   dominant result. Empty headings retain Reveal anchors without a visible title. */
+.reveal .slides section.slide.prompt-output {
+  /* Reveal sets display:block inline on slides it wants to render. Preserve its
+     display:none for distant slides, then override only that active value below. */
+  flex-direction: column;
+  height: 100%;
+}
+
+.reveal .slides section.slide.prompt-output[style*="display: block"] {
+  display: flex !important;
+}
+
+.prompt-output > h2:empty {
+  display: none;
+}
+
+.prompt-output-body {
+  display: grid;
+  flex: 1;
+  gap: 36px;
+  grid-template-columns: minmax(0, 0.29fr) minmax(0, 0.71fr);
+  min-height: 0;
+  position: relative;
+}
+
+.prompt-dialogue {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  min-width: 0;
+}
+
+.prompt-bubble,
+.reply-bubble {
+  border-radius: 22px;
+  box-sizing: border-box;
+  font-size: 0.94em;
+  padding: 26px 28px;
+  position: relative;
+}
+
+.prompt-bubble {
+  background: #e5eef1;
+  margin-right: 22px;
+}
+
+.reply-bubble {
+  background: #e4eee6;
+  margin-left: 22px;
+}
+
+.prompt-bubble::after,
+.reply-bubble::after {
+  border: 18px solid transparent;
+  border-bottom: 0;
+  content: "";
+  position: absolute;
+  top: 100%;
+}
+
+.prompt-bubble::after {
+  border-right: 0;
+  border-top-color: #e5eef1;
+  left: 30px;
+}
+
+.reply-bubble::after {
+  border-left: 0;
+  border-top-color: #e4eee6;
+  right: 30px;
+}
+
+.prompt-output .bubble-label {
+  color: var(--imr-blue);
+  font-size: 0.8em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.prompt-output .reply-bubble .bubble-label {
+  color: #366445;
+}
+
+.prompt-output .prompt-bubble p,
+.prompt-output .reply-bubble p {
+  margin: 0;
+}
+
+.prompt-output-visual,
+.prompt-output-visual .cell,
+.prompt-output-visual .cell-output-display,
+.prompt-output-visual .quarto-figure,
+.prompt-output-visual figure {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 0;
+  min-height: 0;
+  min-width: 0;
+}
+
+.prompt-output-visual figure > p,
+.prompt-output-visual .cell-output-display > p {
+  flex: 1;
+  margin: 0;
+  min-height: 0;
+}
+
+.prompt-output-visual img {
+  display: block;
+  height: 100%;
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.reveal .slides .prompt-output-visual figcaption {
+  flex: 0 0 auto;
+  font-size: 24px;
+  line-height: 1.25;
+  margin-top: 16px;
+}
+
+.prompt-output-above .prompt-output-body {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.prompt-output-above .prompt-dialogue {
+  align-items: start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.prompt-output-above .prompt-bubble,
+.prompt-output-above .reply-bubble {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.prompt-output-above .reply-bubble {
+  margin-top: 22px;
+}
+
+.prompt-output-floating .prompt-output-body {
+  display: block;
+}
+
+.prompt-output-floating .prompt-output-visual {
+  height: 100%;
+}
+
+.prompt-output-floating .prompt-dialogue {
+  display: contents;
+}
+
+.prompt-output-floating .prompt-bubble,
+.prompt-output-floating .reply-bubble {
+  position: absolute;
+  width: 46%;
+  z-index: 1;
+}
+
+.prompt-output-floating .prompt-bubble {
+  left: 11%;
+  margin: 0;
+  top: 0;
+}
+
+.prompt-output-floating .reply-bubble {
+  bottom: 21%;
+  margin: 0;
+  right: 2%;
+}
+
+.prompt-output-floating .reply-bubble::after {
+  border-bottom: 18px solid #e4eee6;
+  border-top: 0;
+  bottom: 100%;
+  top: auto;
+}
+
 .alert-box {
   background: #f8e9e5;
   border-left: 6px solid var(--imr-coral);

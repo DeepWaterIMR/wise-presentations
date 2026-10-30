@@ -54,6 +54,39 @@ entries:
     caveat: Limit the text to the interpretation or assumptions needed to understand the figure.
     source_marker: text-figure
     preview: text-figure.png
+  - id: prompt-output
+    kind: layout
+    name: Prompt + output
+    category: Demonstration
+    evidence: A prompt, a short model reply, and its visual output
+    use: Demonstrate a prompt, a one-sentence model reply, and a dominant graphical result with the exchange beside the output.
+    code: .prompt-output
+    classes: [prompt-output, prompt-output-body, prompt-dialogue, prompt-bubble, reply-bubble, bubble-label, prompt-output-visual]
+    caveat: Default arrangement. Keep the exchange short, name the responding model, and add a concise scientific caption when needed. Titles are optional; distinguish illustrative previews from executed results.
+    source_marker: prompt-output
+    preview: prompt-output.png
+  - id: prompt-output-above
+    kind: layout
+    name: Prompt + output above
+    category: Demonstration
+    evidence: A prompt, a short model reply, and its visual output
+    use: Place the prompt and model reply above a wide graphical result.
+    code: .prompt-output .prompt-output-above
+    classes: [prompt-output, prompt-output-above, prompt-output-body, prompt-dialogue, prompt-bubble, reply-bubble, bubble-label, prompt-output-visual]
+    caveat: The exchange uses figure height; prefer beside for tall results. Keep both bubbles to one short sentence and captions concise.
+    source_marker: prompt-output-above
+    preview: prompt-output-above.png
+  - id: prompt-output-floating
+    kind: layout
+    name: Prompt + output floating
+    category: Demonstration
+    evidence: A prompt, a short model reply, and its visual output
+    use: Place prompt and reply bubbles in empty regions of a result that fills the content area.
+    code: .prompt-output .prompt-output-floating
+    classes: [prompt-output, prompt-output-floating, prompt-output-body, prompt-dialogue, prompt-bubble, reply-bubble, bubble-label, prompt-output-visual]
+    caveat: Inspect both bubbles for overlap with data, axes, legends, and captions. Use beside or above when there is no suitable empty area; never move or suppress data to fit a bubble.
+    source_marker: prompt-output-floating
+    preview: prompt-output-floating.png
   - id: layout-guide
     kind: feature
     name: Layout guide

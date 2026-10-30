@@ -106,7 +106,7 @@ export default function LearningHub({ initialEntries }: { initialEntries: Catalo
           </div>
           <div className="hero-feature-points" aria-label="Template features">
             <span>Quarto and RevealJS</span>
-            <span>17 reusable layouts</span>
+            <span>{layouts.length} reusable layouts</span>
             <span>Source-linked examples</span>
           </div>
         </div>

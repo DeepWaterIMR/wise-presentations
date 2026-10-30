@@ -10,7 +10,7 @@ Keep `presentation.yml` backward compatible for downstream presentations. Reposi
 
 ## Add or revise a layout
 
-Update the marked example in `presentation.qmd`, its reusable style in `assets/theme.scss`, and its catalogue entry together. Give each content slide a declarative sentence title without a closing full stop and one primary figure, image, table, or explanation. When a visual is present, give it most of the content area. Include concise notes and reuse existing helpers before adding a new abstraction.
+Update the marked example in `presentation.qmd`, its reusable style in `assets/theme.scss`, and its catalogue entry together. Give each content slide a declarative sentence title without a closing full stop and one primary figure, image, table, or explanation. Prompt + output may omit the visible title when its prompt establishes the purpose; retain an empty heading for its slide anchor. When a visual is present, give it most of the content area. Include concise notes and reuse existing helpers before adding a new abstraction.
 
 Document fragments, emphasis, background images, fonts, spacing, and text-density modifiers as features unless they represent a distinct audience-facing composition.
 

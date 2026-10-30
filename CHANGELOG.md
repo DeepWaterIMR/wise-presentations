@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-30 — prompt and output layouts
+
+- Added Prompt + output with beside as the default, plus above and floating alternatives, all with optional visible titles.
+- Paired a concise prompt with a one-sentence model-named reply and a dominant result. Optional scientific captions appear directly below the output.
+- Added shared model-label and simulated-figure helpers, copyable sampler examples, catalogue entries, and authoring/review guidance.
+- Required illustrative previews to be identified and floating bubbles to be checked against data, axes, legends, and captions.
+
+Validation: sampler render (5.3 MB), all 26 previews and catalogue order, helper checks, installer smoke tests, skill validation, and site lint/build passed. Desktop/mobile checks cover title-free slides, optional titles, captions and caption-free outputs, minimum text sizes, and learning-hub behavior.
+
 ## 2026-10-09 — review and learning-hub synchronization
 
 - Updated layout selection guidance for Edge figure, Figure tabs, and Conclusion cards, plus title punctuation, transparent figure backgrounds, and final-slide credits.

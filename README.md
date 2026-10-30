@@ -1,7 +1,7 @@
 [![Part of Fiskwise](https://deepwaterimr.github.io/fiskwise/assets/part-of-fiskwise.svg)](https://deepwaterimr.github.io/fiskwise/)
 
 <!-- version -->
-**Version 0.1.3** (2026-10-26)
+**Version 0.1.4** (2026-10-30)
 <!-- /version -->
 
 # wise-presentations
@@ -16,7 +16,7 @@ An optional [Fiskwise](https://deepwaterimr.github.io/fiskwise/) add-on. The eco
 
 ## What the template provides
 
-- Content slides with a full-sentence title that states the main message, without a closing full stop.
+- Content slides with a full-sentence title that states the main message, without a closing full stop; Prompt + output can omit its visible title.
 - Layouts that give the primary figure, image, table, or explanation sufficient space, including full-height edge figures, figure tabs, and conclusion cards.
 - Project-relative interfaces for reading rerenderable analysis outputs.
 - A self-contained HTML presentation that can be shared as one file.
@@ -75,6 +75,16 @@ This standalone installer is written in base R, so it requires `Rscript`; the Fi
 7. Run `Rscript capture_slides.R` and inspect every slide plus the contact sheet.
 
 Use `presentation.html` when no output filename is specified. PowerPoint export is not yet part of the supported workflow; it will be evaluated after the HTML layouts are settled.
+
+## Demonstrate a prompt and its output
+
+Use `Prompt + output` / `.prompt-output` to show a concise prompt, a one-sentence model reply, and a dominant result. The default places the exchange beside the output; add `.prompt-output-above` for a wide result or `.prompt-output-floating` when both bubbles fit in empty regions of the graphic. All three arrangements have copyable examples in the learning hub.
+
+Start with an empty heading such as `## {#my-demo .prompt-output}` to omit the visible title; add heading text when a title helps. Put the bubbles in `.prompt-dialogue` and the output in `.prompt-output-visual`, both inside `.prompt-output-body`. Label the reply with `prompt_reply_label(cfg$project$ai_model)` after recording the responding model's own concise name in `presentation.yml`; an unset or placeholder name falls back to “Agent reply”. The helper removes an optional `Codex, ` product prefix for the bubble, while the final-slide credit retains the configured value.
+
+The reply describes the action in one first-person sentence. For scientific figures, use a short `fig-cap` when axes and legends leave needed context; it appears directly below the result and explains symbols, uncertainty, and units. Remove `fig-cap` when a caption is unnecessary. Use `fig-alt` for an accessible description. Detailed methods belong in speaker notes. The sampler's figure is simulated; real demonstrations must read rerenderable analysis results and identify any estimated preview honestly.
+
+Floating placement is intentionally conservative, not automatic collision avoidance. Inspect both bubbles after rendering; use beside or above if they would cover data, axes, legends, or a caption.
 
 ## Stable interfaces
 

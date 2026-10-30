@@ -24,7 +24,11 @@ Use this file to agree on the presentation structure before expanding `presentat
 ## Approval
 
 - [ ] Audience, duration, purpose, story, and filename are agreed.
-- [ ] Each content slide has one declarative message title without a closing full stop.
+- [ ] Each content slide has one declarative message title without a closing full stop, or is a Prompt + output slide whose concise prompt establishes its purpose.
 - [ ] Each content slide has one primary source of evidence or explanation.
 - [ ] Layouts are named using the learning-hub catalogue.
 - [ ] The plan is explicitly approved before the presentation is built or rendered.
+
+## Approved sampler addition (2026-10-30)
+
+The user approved Prompt + output with beside as the default and above and floating alternatives. All variants may omit the visible title, pair the prompt with a one-sentence model-named reply, and optionally place a short scientific caption below the output. The shared simulated survey-index example demonstrates layout only; no research result is implied.

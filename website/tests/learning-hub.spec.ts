@@ -41,7 +41,7 @@ test("catalogue, deep links, dialog, copy, and responsive layout", async ({ page
   const samplerResponse = await page.request.get(new URL(samplerHref!, page.url()).href);
   expect(samplerResponse.ok()).toBe(true);
 
-  for (const id of ["edge-figure", "figure-tabs", "conclusion-cards"]) {
+  for (const id of ["edge-figure", "figure-tabs", "conclusion-cards", "prompt-output", "prompt-output-above", "prompt-output-floating"]) {
     const entry = layouts.find((candidate) => candidate.id === id)!;
     await page.getByRole("button", { name: `Inspect ${entry.name}`, exact: true }).click();
     await expect(page.getByRole("dialog").getByRole("heading", { name: entry.name, exact: true })).toBeVisible();
@@ -97,6 +97,40 @@ test("catalogue, deep links, dialog, copy, and responsive layout", async ({ page
     await page.setViewportSize({ width: 320, height: 800 });
     await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
     await expect.poll(() => page.locator(".site-header").evaluate((header) => header.scrollWidth <= header.clientWidth + 1)).toBe(true);
+  }
+});
+
+test("prompt outputs keep replies, optional titles, and captions inside the slide", async ({ page }, testInfo) => {
+  for (const id of ["prompt-output", "prompt-output-above", "prompt-output-floating"]) {
+    await page.goto(`/wise-presentations/demo/presentation.html#/${id}`);
+    await page.waitForFunction(() => (window as unknown as { Reveal?: { isReady(): boolean } }).Reveal?.isReady());
+    const slide = page.locator(`#${id}`);
+    if (testInfo.project.name === "mobile") await slide.scrollIntoViewIfNeeded();
+    await expect(slide.locator("h2")).toBeHidden();
+    await expect(slide.locator(".reply-bubble .bubble-label")).toHaveText("Agent reply");
+    await expect(slide.locator("figcaption")).toContainText("Values are simulated.");
+    await expect.poll(() => slide.locator("img").evaluate((image) => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0)).toBe(true);
+    const checkBounds = async () => slide.evaluate((element) => {
+      const bounds = element.getBoundingClientRect();
+      return Array.from(element.querySelectorAll(".prompt-bubble, .reply-bubble, figcaption, img")).map((child) => {
+        const box = child.getBoundingClientRect();
+        return box.width > 0 && box.height > 0 && box.left >= bounds.left - 1 && box.right <= bounds.right + 1 && box.top >= bounds.top - 1 && box.bottom <= bounds.bottom + 1;
+      }).every(Boolean);
+    });
+    await expect.poll(checkBounds).toBe(true);
+    for (const selector of [".bubble-label", ".reply-bubble p", "figcaption"]) {
+      const sizes = await slide.locator(selector).evaluateAll((elements) => elements.map((element) => parseFloat(getComputedStyle(element).fontSize)));
+      expect(Math.min(...sizes)).toBeGreaterThanOrEqual(16 * 96 / 72 - 0.01);
+    }
+    await slide.screenshot({ path: testInfo.outputPath(`${id}-slide.png`) });
+    // Both optional-title and caption-free uses must retain the same fitted composition.
+    await slide.locator("h2").evaluate((element) => { element.textContent = "The prompt produces a scientific figure"; });
+    await page.evaluate(() => (window as unknown as { Reveal: { layout(): void } }).Reveal.layout());
+    await expect(slide.locator("h2")).toBeVisible();
+    await expect.poll(checkBounds).toBe(true);
+    await slide.locator("figcaption").evaluate((element) => element.remove());
+    await page.evaluate(() => (window as unknown as { Reveal: { layout(): void } }).Reveal.layout());
+    await expect.poll(checkBounds).toBe(true);
   }
 });
 

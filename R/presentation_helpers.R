@@ -96,6 +96,42 @@ format_num <- function(x, digits = 2, suffix = "") {
   paste0(format(round(x, digits), trim = TRUE, big.mark = " "), suffix)
 }
 
+#' Label a prompt reply with the responding model's configured name
+#' @param model Concise model name, normally from project.ai_model.
+#' @return A model label, or "Agent reply" when no usable name is configured.
+prompt_reply_label <- function(model = NULL) {
+  if (!is.character(model) || length(model) != 1L || is.na(model)) {
+    return("Agent reply")
+  }
+  model <- trimws(sub("^Codex,\\s*", "", model))
+  if (!nzchar(model) || tolower(model) %in% c("ai model name", "model name")) {
+    return("Agent reply")
+  }
+  model
+}
+
+#' Draw the simulated figure used by the prompt-output sampler
+#' @return A ggplot with illustrative estimates and uncertainty, not research data.
+plot_prompt_output_example <- function() {
+  example <- tibble::tibble(
+    year = 2014:2025,
+    index = c(0.48, 0.44, 0.50, 0.46, 0.57, 0.61, 0.66, 0.62, 0.74, 0.81, 0.87, 0.94),
+    uncertainty = 0.10 + (0:11) * 0.004
+  )
+  ggplot2::ggplot(example, ggplot2::aes(year, index)) +
+    ggplot2::geom_ribbon(
+      ggplot2::aes(ymin = index - uncertainty, ymax = index + uncertainty),
+      fill = "#449bcf", alpha = 0.22
+    ) +
+    ggplot2::geom_line(colour = "#056a89", linewidth = 1.3) +
+    ggplot2::geom_point(colour = "#056a89", size = 2.5) +
+    ggplot2::scale_x_continuous(breaks = c(2014, 2017, 2020, 2023, 2025)) +
+    ggplot2::scale_y_continuous(limits = c(0, 1.4), breaks = seq(0, 1.2, 0.4)) +
+    ggplot2::labs(x = "Year", y = "Relative biomass index") +
+    presentation_theme(base_size = 26) +
+    ggplot2::theme(panel.grid.major.y = ggplot2::element_line(colour = "#d6dedb"))
+}
+
 # Add to plots with a package-supplied theme: transparent plot, panel and legend backgrounds.
 transparent_bg <- function() {
   ggplot2::theme(

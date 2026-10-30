@@ -18,7 +18,7 @@ Shared rules for scientific presentation projects based on this template. Task p
 
 - Do not hard-wrap prose. Keep each paragraph or list item on one source line and use line breaks only for real Markdown structure.
 - Keep visible slide text concise, professional, factual, and free of filler or promotional language.
-- Give each content slide a complete declarative sentence title that states its main message. Do not end the title with a full stop. Title and section slides are exceptions.
+- Give each content slide a complete declarative sentence title that states its main message. Do not end the title with a full stop. Title and section slides are exceptions. `Prompt + output` slides may omit the visible title because the prompt establishes their purpose; use an empty heading to retain the slide anchor.
 - Do not invent text, results, or examples merely to fill space in a project presentation.
 - End every presentation with a `.credit-note` line on the final slide: "The slides were made with [Quarto](https://quarto.org/) using [wise-presentations](https://deepwaterimr.github.io/wise-presentations/) and <model>." The line reads `<model>` from `project.ai_model` in `presentation.yml`. Set it to a concise name for the model you, the agent building the presentation, are running as: product and model only, no version IDs or dates (for example "Claude Opus 5.5" or "Codex, GPT-6.1 Sol"). Check your own system information for the name; never copy it from this template, another deck, or another agent. When a different agent substantially revises the deck, it updates the field to its own model.
 - Before editing a presentation, read `README.md`, `slide-plan.md`, and `presentation.yml`, then learn the surrounding analysis project.
@@ -42,13 +42,21 @@ Shared rules for scientific presentation projects based on this template. Task p
 - Concepts should be paired with a photograph, schematic, map, or representative scientific figure that contributes to the explanation.
 - Keep all visible text at least 16 pt, including captions, legends, tables, section labels, and slide numbers.
 - Keep detailed explanation in speaker notes.
-- Use captions only when requested. Otherwise avoid `fig-` and `tbl-` chunk-label prefixes and placeholder captions.
+- Use captions only when requested, except that a short caption is recommended for scientific figures in `Prompt + output` when axes and legends leave needed context. Otherwise avoid `fig-` and `tbl-` chunk-label prefixes and placeholder captions.
 - Use transparent plot, panel, legend, and legend-key backgrounds.
 - Figures must have transparent plot and legend backgrounds; use `transparent_bg()` when a package supplies its own theme.
 - Render inline figures at screen resolution and optimize large external images before embedding them in self-contained HTML.
 - Reserve arbitrary absolute positioning for genuine full-bleed images or small accents; use the supported figure layouts for scientific figures.
 - Keep fragment slides legible in their resting state and ensure transparent intermediate figures fade out before the next one appears.
 - Bundle custom fonts under `assets/fonts/`, register them with `systemfonts`, and render those figures with `ragg`.
+
+## Prompt + output
+
+- Use `.prompt-output` for the default beside arrangement; add `.prompt-output-above` or `.prompt-output-floating` for alternatives.
+- Keep the prompt concise and the reply to one first-person sentence describing the action taken. Label the reply with the responding model's own concise name, read from `project.ai_model` via `prompt_reply_label()`; use “Agent reply” only when the name is unavailable. Never copy another model's identity.
+- Prefer graphical outputs when they suit the prompt. Connect executed results to rerenderable sources. Clearly label any estimated, simulated, or illustrative preview; never imply that an analysis ran when it did not.
+- A scientific caption explains how to read the figure, including essential symbols, uncertainty, and units; the reply explains what the agent did. Put the caption directly below the output and detailed methods in notes.
+- Use floating bubbles only over empty regions; check data, axes, legends, and captions. Switch to beside or above when no safe space exists. Never alter results to make room.
 
 ## Render and delivery rules
 
