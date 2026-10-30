@@ -56,4 +56,12 @@ for (system in c(".agents", ".claude")) {
   }
 }
 
+for (name in names(expected)) {
+  codex <- file.path(".agents", "skills", name, "SKILL.md")
+  claude <- file.path(".claude", "skills", name, "SKILL.md")
+  if (!identical(readLines(codex, warn = FALSE), readLines(claude, warn = FALSE))) {
+    stop(claude, " is out of sync with ", codex, ".")
+  }
+}
+
 message("Validated 10 skill shims and 5 shared workflows.")
