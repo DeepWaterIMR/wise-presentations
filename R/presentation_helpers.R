@@ -61,7 +61,7 @@ read_presentation_config <- function(config_file = "presentation.yml",
     stop("Presentation config does not exist: ", config_path)
   }
 
-  cfg <- yaml::read_yaml(config_path)
+  cfg <- yaml::read_yaml(config_path, eval.expr = FALSE)
   cfg$.config_path <- config_path
   cfg$.config_dir <- dirname(config_path)
   cfg$.project_root <- resolve_path(project_root, getwd())

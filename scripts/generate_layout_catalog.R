@@ -33,7 +33,7 @@ preview_dir <- normalizePath(
 )
 require_previews <- "--require-previews" %in% args
 
-manifest <- yaml::read_yaml(manifest_file)
+manifest <- yaml::read_yaml(manifest_file, eval.expr = FALSE)
 entries <- manifest$entries
 if (!is.list(entries) || !length(entries)) {
   stop("slide-layouts.yml must contain a non-empty entries list.")

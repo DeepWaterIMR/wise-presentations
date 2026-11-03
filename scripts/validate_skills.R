@@ -18,7 +18,7 @@ read_frontmatter <- function(path) {
   if (length(delimiters) < 2L || delimiters[[1]] != 1L) {
     stop(path, " must begin with YAML front matter.")
   }
-  yaml::yaml.load(paste(lines[2:(delimiters[[2]] - 1L)], collapse = "\n"))
+  yaml::yaml.load(paste(lines[2:(delimiters[[2]] - 1L)], collapse = "\n"), eval.expr = FALSE)
 }
 
 for (system in c(".agents", ".claude")) {

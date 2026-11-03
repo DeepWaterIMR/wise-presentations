@@ -61,7 +61,7 @@ config_file <- normalizePath(
   arg_value("--config", "presentation.yml"),
   mustWork = TRUE
 )
-render_config <- yaml::read_yaml(config_file)
+render_config <- yaml::read_yaml(config_file, eval.expr = FALSE)
 project_root <- normalizePath(
   arg_value("--project-root", "."),
   mustWork = TRUE

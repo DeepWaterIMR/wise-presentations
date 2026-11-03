@@ -31,7 +31,7 @@ config_file <- normalizePath(
   arg_value("--config", "presentation.yml"),
   mustWork = TRUE
 )
-render_config <- yaml::read_yaml(config_file)
+render_config <- yaml::read_yaml(config_file, eval.expr = FALSE)
 configured_output <- render_config$render$output_file
 if (is.null(configured_output) || !nzchar(configured_output)) {
   configured_output <- "presentation.html"
@@ -139,7 +139,7 @@ if (!length(slide_ids)) {
 manifest_arg <- arg_value("--manifest")
 if (!is.null(manifest_arg)) {
   manifest_file <- normalizePath(manifest_arg, mustWork = TRUE)
-  manifest <- yaml::read_yaml(manifest_file)
+  manifest <- yaml::read_yaml(manifest_file, eval.expr = FALSE)
   expected_ids <- vapply(
     manifest$entries,
     function(entry) entry$id,
