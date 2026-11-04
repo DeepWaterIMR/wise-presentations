@@ -1,7 +1,7 @@
 [![Part of Fiskwise](https://deepwaterimr.github.io/fiskwise/assets/part-of-fiskwise.svg)](https://deepwaterimr.github.io/fiskwise/)
 
 <!-- version -->
-**Version 0.1.7** (2026-11-03)
+**Version 0.1.8** (2026-11-04)
 <!-- /version -->
 
 # wise-presentations
