@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0 — 2026-11-04
+
+- Start the 0.2 series shared by all Fiskwise knowledge packs; add the agent-report issue form, PR template and reporting-back rule.
+
 ## 2026-10-30 — prompt and output layouts
 
 - Added Prompt + output with beside as the default, plus above and floating alternatives, all with optional visible titles.
