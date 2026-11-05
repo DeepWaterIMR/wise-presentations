@@ -1,7 +1,7 @@
 [![Part of Fiskwise](https://deepwaterimr.github.io/fiskwise/assets/part-of-fiskwise.svg)](https://deepwaterimr.github.io/fiskwise/)
 
 <!-- version -->
-**Version 0.2.0** (2026-11-04)
+**Version 0.2.1** (2026-11-05)
 <!-- /version -->
 
 # wise-presentations
@@ -74,7 +74,7 @@ This standalone installer is written in base R, so it requires `Rscript`; the Fi
 6. Run `Rscript render_presentation.R`.
 7. Run `Rscript capture_slides.R` and inspect every slide plus the contact sheet.
 
-Use `presentation.html` when no output filename is specified. PowerPoint export is not yet part of the supported workflow; it will be evaluated after the HTML layouts are settled.
+Set a descriptive, searchable output filename such as `cod-assessment-afwg-2026-04-21.html` in `render.output_file` in `presentation.yml` (or pass `--output-file`); `capture_slides.R` reads the same setting. `presentation.html` is only the fallback when no name is configured. PowerPoint export is not yet part of the supported workflow; it will be evaluated after the HTML layouts are settled.
 
 ## Demonstrate a prompt and its output
 

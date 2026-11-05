@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 — 2026-11-05
+
+- Agents now propose a descriptive, searchable HTML filename (`<topic>-<meeting>-<YYYY-MM-DD>.html`) and record it in `render.output_file`; `presentation.html` is only the fallback. Updated the make-presentation workflow, AGENTS.md, slide-plan brief, README, and the `presentation.yml` comment.
+
+Validation: skill validation and installer smoke tests passed.
+
 ## 0.2.0 — 2026-11-04
 
 - Start the 0.2 series shared by all Fiskwise knowledge packs; add the agent-report issue form, PR template and reporting-back rule.

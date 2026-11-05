@@ -15,4 +15,4 @@ data:
   inputs: {}
 
 render:
-  output_file: "presentation.html"
+  output_file: "presentation.html"  # replace with a descriptive, searchable name, e.g. "cod-assessment-afwg-2026-04-21.html"

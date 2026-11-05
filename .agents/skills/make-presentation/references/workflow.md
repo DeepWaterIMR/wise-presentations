@@ -8,7 +8,7 @@ Read `README.md`, `AGENTS.md`, `presentation.yml`, and `slide-plan.md`, then lea
 
 ## Agree on the presentation
 
-Discuss the audience, duration, meeting context, purpose, one-sentence story, and HTML output filename. Use `presentation.html` when no name is provided. Update `slide-plan.md` with one message, one primary source of evidence or explanation, one named layout, draft visible text, notes, and status per slide.
+Discuss the audience, duration, meeting context, purpose, one-sentence story, and HTML output filename. Propose a descriptive, searchable filename in the form `<topic>-<meeting>-<YYYY-MM-DD>.html` (lowercase, hyphen-separated, for example `cod-assessment-afwg-2026-04-21.html`) and record the agreed name in `render.output_file` in `presentation.yml`. Do not leave the generic `presentation.html`, which is hard to find later with desktop search; it is only the fallback when no name is configured. Update `slide-plan.md` with one message, one primary source of evidence or explanation, one named layout, draft visible text, notes, and status per slide.
 
 Show the proposed overview and wait for explicit approval before expanding `presentation.qmd` or rendering a new presentation. Approval of the plan is the hard gate.
 

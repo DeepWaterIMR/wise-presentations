@@ -9,7 +9,7 @@ Use this file to agree on the presentation structure before expanding `presentat
 - Meeting or event:
 - Purpose or decision:
 - One-sentence story:
-- HTML output filename: `presentation.html`
+- HTML output filename: `<topic>-<meeting>-<YYYY-MM-DD>.html` (set in `render.output_file`)
 
 ## Proposed slides
 
