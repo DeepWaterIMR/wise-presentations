@@ -40,7 +40,10 @@ Shared rules for scientific presentation projects based on this template. Task p
 - Prefer the named layouts demonstrated in the learning hub and implemented in `assets/theme.scss`.
 - When a figure or image is shown, it should normally occupy most of the slide's content area.
 - Concepts should be paired with a photograph, schematic, map, or representative scientific figure that contributes to the explanation.
-- Keep all visible text at least 16 pt, including captions, legends, tables, section labels, and slide numbers.
+- Design for the back of the room and for Teams. On the 1600×900 canvas, keep body text at least 26 px and captions and table text at least 22 px; nothing visible, including legends, section labels, and slide numbers, goes below 16 pt.
+- Keep text sparse. A concept slide carries at most about 35 visible words, three or four boxes or bullets, and a title that fits on one line (about 65 characters). Move the rest into speaker notes. When a slide feels crowded, cut, merge, or split it; never shrink the type to make it fit.
+- Put a picture that is central to the talk on the title slide, such as the study-area map or the key result figure.
+- When slide content is short, centre it vertically below the top-aligned title instead of leaving the lower half empty.
 - Keep detailed explanation in speaker notes.
 - Use captions only when requested, except that a short caption is recommended for scientific figures in `Prompt + output` when axes and legends leave needed context. Otherwise avoid `fig-` and `tbl-` chunk-label prefixes and placeholder captions.
 - Use transparent plot, panel, legend, and legend-key backgrounds.

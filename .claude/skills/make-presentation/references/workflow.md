@@ -8,7 +8,7 @@ Read `README.md`, `AGENTS.md`, `presentation.yml`, and `slide-plan.md`, then lea
 
 ## Agree on the presentation
 
-Discuss the audience, duration, meeting context, purpose, one-sentence story, and HTML output filename. Propose a descriptive, searchable filename in the form `<topic>-<meeting>-<YYYY-MM-DD>.html` (lowercase, hyphen-separated, for example `cod-assessment-afwg-2026-04-21.html`) and record the agreed name in `render.output_file` in `presentation.yml`. Do not leave the generic `presentation.html`, which is hard to find later with desktop search; it is only the fallback when no name is configured. Update `slide-plan.md` with one message, one primary source of evidence or explanation, one named layout, draft visible text, notes, and status per slide.
+Discuss the audience, duration, meeting context, purpose, one-sentence story, and HTML output filename. Propose a descriptive, searchable filename in the form `<topic>-<meeting>-<YYYY-MM-DD>.html` (lowercase, hyphen-separated, for example `cod-assessment-afwg-2026-04-21.html`) and record the agreed name in `render.output_file` in `presentation.yml`. Do not leave the generic `presentation.html`, which is hard to find later with desktop search; it is only the fallback when no name is configured. Budget time before slides: give each slide a speaking time (about one minute for a concept slide, one to two for a demo) and keep the total at about three quarters of the slot, leaving the rest for questions. Plan fewer slides rather than denser ones. Update `slide-plan.md` with one message, one primary source of evidence or explanation, one named layout, draft visible text, notes, and status per slide.
 
 Show the proposed overview and wait for explicit approval before expanding `presentation.qmd` or rendering a new presentation. Approval of the plan is the hard gate.
 
@@ -20,7 +20,7 @@ Keep analysis logic in the analysis project or small helpers. Read numbers and f
 
 When no compact summary exists, add project-relative inputs and a focused adapter or refresh helper. Fail clearly when required inputs are missing. Reuse plotting helpers when a figure appears more than once. Keep inline graphics at screen resolution and pre-optimize large external images.
 
-Move detail into speaker notes, preserve scientific meaning and uncertainty, and keep visible text at least 16 pt. Add captions when the analyst wants them; for scientific Prompt + output figures, recommend a short caption when axes and legends leave needed context.
+Move detail into speaker notes, preserve scientific meaning and uncertainty, and follow the text budget and type sizes in `AGENTS.md`. Start each speaker note with its time, for example `**1:00.**`. Add captions when the analyst wants them; for scientific Prompt + output figures, recommend a short caption when axes and legends leave needed context.
 
 Finish the final slide with the `.credit-note` production line from `AGENTS.md`, and set `project.ai_model` in `presentation.yml` to the concise name of the model you are running as.
 

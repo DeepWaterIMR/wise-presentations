@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.2 — 2026-11-20
+
+- Text budget and type sizes: body text at least 26 px and captions and tables at least 22 px on the 1600×900 canvas; about 35 visible words and three or four boxes per concept slide; one-line titles; cut or split crowded slides instead of shrinking type. A picture central to the talk goes on the title slide, and short content is centred below the title. Lessons from the MeLRA 2026 deck.
+- make-presentation budgets speaking time per slide (about three quarters of the slot) and starts each note with its time; review-presentation measures the smallest computed font size, counts words, sums note timings, and checks the title picture.
+
+Validation: skill validation passed. Theme defaults and sampler layouts are unchanged.
+
 ## 0.2.1 — 2026-11-05
 
 - Agents now propose a descriptive, searchable HTML filename (`<topic>-<meeting>-<YYYY-MM-DD>.html`) and record it in `render.output_file`; `presentation.html` is only the fallback. Updated the make-presentation workflow, AGENTS.md, slide-plan brief, README, and the `presentation.yml` comment.
