@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.3 — 2026-11-20
+
+- Theme type scale raised to the 0.2.2 rules: titles on the title slide, kickers, metadata, captions, card labels, metric notes, takeaways, tables (0.66 → 0.8 em; medium and tight densities 0.76 and 0.72 em), section labels and slide numbers. No visible sampler text is below 22 px except subscripts.
+- New `.title-art` slot puts a picture central to the talk beside the title block; the sampler shows the Arctic map.
+- With `center: false`, short slide content is centred vertically below the title; layouts that manage their own height (Prompt + output, edge figure, full figure, background image) are excluded.
+- Sampler titles shortened to fit on one line.
+
+Validation: helper tests, skill validation, installer tests, sampler render (5.6 MB), all 26 previews with catalogue order, site lint/build and desktop/mobile Playwright tests passed.
+
 ## 0.2.2 — 2026-11-20
 
 - Text budget and type sizes: body text at least 26 px and captions and tables at least 22 px on the 1600×900 canvas; about 35 visible words and three or four boxes per concept slide; one-line titles; cut or split crowded slides instead of shrinking type. A picture central to the talk goes on the title slide, and short content is centred below the title. Lessons from the MeLRA 2026 deck.

@@ -8,6 +8,9 @@ $font-family-sans-serif: "Aptos", "Helvetica Neue", Arial, sans-serif;
 $presentation-font-size-root: 30px;
 
 /*-- scss:rules --*/
+/* Type scale (root 30 px on the 1600×900 canvas): body text ≥ 26 px, captions
+   and tables ≥ 22 px, nothing below 16 pt. When a slide feels crowded, cut or
+   split it instead of lowering these sizes. */
 :root {
   --imr-ink: #173042;
   --imr-blue: #056a89;
@@ -37,7 +40,7 @@ $presentation-font-size-root: 30px;
   bottom: 18px;
   color: #9aa7ab;
   content: attr(data-section);
-  font-size: 0.56em;
+  font-size: 0.72em;
   left: 50%;
   letter-spacing: 0.04em;
   position: absolute;
@@ -78,7 +81,7 @@ $presentation-font-size-root: 30px;
 
 .title-kicker {
   color: var(--imr-blue);
-  font-size: 0.62em;
+  font-size: 0.8em;
   font-weight: 700;
   letter-spacing: 0.12em;
   margin-bottom: 1.1rem;
@@ -86,7 +89,7 @@ $presentation-font-size-root: 30px;
 }
 
 .title-heading {
-  font-size: 2.15em;
+  font-size: 3em;
   font-weight: 750;
   letter-spacing: -0.025em;
   line-height: 1.02;
@@ -95,7 +98,7 @@ $presentation-font-size-root: 30px;
 
 .title-subtitle {
   color: var(--imr-muted);
-  font-size: 1.04em;
+  font-size: 1.25em;
   line-height: 1.25;
   margin-top: 1.2rem;
 }
@@ -131,7 +134,7 @@ $presentation-font-size-root: 30px;
 .title-meta {
   border-left: 5px solid var(--imr-sky);
   color: var(--imr-muted);
-  font-size: 0.72em;
+  font-size: 0.9em;
   line-height: 1.45;
   margin-top: 0;
   padding-left: 1rem;
@@ -218,7 +221,7 @@ $presentation-font-size-root: 30px;
 .text-panel,
 .concept-text,
 .conclusion-text {
-  font-size: 0.86em;
+  font-size: 1em;
 }
 
 .text-panel li,
@@ -254,7 +257,7 @@ $presentation-font-size-root: 30px;
 }
 
 .edge-figure-text {
-  font-size: 0.86em;
+  font-size: 1em;
 }
 
 .edge-figure-panel {
@@ -311,7 +314,7 @@ $presentation-font-size-root: 30px;
 }
 
 .layout-guide table {
-  font-size: 0.72em;
+  font-size: 0.8em;
 }
 
 .card,
@@ -328,7 +331,7 @@ $presentation-font-size-root: 30px;
 
 .card-title {
   color: var(--imr-blue);
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: 750;
   margin: 0 0 0.45rem 0;
 }
@@ -339,7 +342,7 @@ $presentation-font-size-root: 30px;
 
 .metric-label {
   color: var(--imr-muted);
-  font-size: 0.62em;
+  font-size: 0.8em;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -355,7 +358,7 @@ $presentation-font-size-root: 30px;
 
 .metric-note {
   color: var(--imr-muted);
-  font-size: 0.58em;
+  font-size: 0.75em;
   margin-top: 0.35rem;
 }
 
@@ -371,18 +374,18 @@ $presentation-font-size-root: 30px;
   background: var(--imr-sand);
   border-left: 6px solid var(--imr-green);
   border-radius: 4px;
-  font-size: 0.95em;
+  font-size: 1.05em;
   margin-top: 1rem;
   padding: 0.65rem 0.9rem;
 }
 
 .compact {
-  font-size: 0.82em;
+  font-size: 0.9em;
 }
 
 .small-note {
   color: var(--imr-muted);
-  font-size: 0.74em;
+  font-size: 0.8em;
 }
 
 .scenario-figure {
@@ -399,7 +402,7 @@ $presentation-font-size-root: 30px;
 
 .reveal figcaption {
   color: var(--imr-muted);
-  font-size: 0.74em;
+  font-size: 0.8em;
   margin-top: 0.35rem;
   text-align: left;
 }
@@ -447,7 +450,7 @@ $presentation-font-size-root: 30px;
 .reply-bubble {
   border-radius: 22px;
   box-sizing: border-box;
-  font-size: 0.94em;
+  font-size: 1em;
   padding: 26px 28px;
   position: relative;
 }
@@ -623,7 +626,7 @@ $presentation-font-size-root: 30px;
 }
 
 .reveal table {
-  font-size: 0.66em;
+  font-size: 0.8em;
   width: 100%;
 }
 
@@ -640,18 +643,18 @@ $presentation-font-size-root: 30px;
 
 .reveal .slide-number {
   color: var(--imr-muted);
-  font-size: 0.54em;
+  font-size: 0.72em;
 }
 
 /* Named table-size helpers. Use .table-tight for wide multi-column tables
    (9+ columns) and .table-medium for mid-width tables with an explanation
    column. Both override the base 0.66em only when applied. */
 .table-tight table {
-  font-size: 0.56em;
+  font-size: 0.72em;
 }
 
 .table-medium table {
-  font-size: 0.62em;
+  font-size: 0.76em;
 }
 
 /* Fade-in sign-off under a conclusions grid. Add {.fragment .fade-in} on the
@@ -670,7 +673,7 @@ $presentation-font-size-root: 30px;
    conclusions. */
 .credit-note {
   color: var(--imr-muted);
-  font-size: max(0.6em, 16pt);
+  font-size: max(0.74em, 16pt);
   margin-top: 1.4rem;
   text-align: center;
 }
@@ -770,7 +773,7 @@ $presentation-font-size-root: 30px;
   box-shadow: 0 3px 10px rgba(23, 48, 66, 0.06);
   color: var(--imr-ink);
   display: flex;
-  font-size: 0.76em;
+  font-size: 0.85em;
   font-weight: 700;
   justify-content: center;
   padding: 0.35rem;
@@ -824,7 +827,7 @@ $presentation-font-size-root: 30px;
 .reveal .panel-tabset .panel-tabset-tabby {
   display: flex;
   flex-wrap: wrap;
-  font-size: max(0.75em, 16pt);
+  font-size: max(0.85em, 16pt);
 }
 
 .reveal .panel-tabset .tab-content img {
@@ -839,4 +842,56 @@ $presentation-font-size-root: 30px;
 
 .card-title a {
   font-weight: inherit;
+}
+
+/* Short content sits vertically centred between the top-aligned title and the
+   slide bottom instead of leaving the lower half empty (center: false). Layouts
+   that manage their own height are excluded. */
+.reveal .slides section.slide:not(.prompt-output):not(.title-slide):not(.edge-figure):not(.background-image-slide):not(.full-figure)[style*="display: block"] {
+  display: flex !important;
+  flex-direction: column;
+  height: 100%;
+}
+
+.reveal .slides section.slide:not(.prompt-output):not(.title-slide):not(.edge-figure):not(.background-image-slide):not(.full-figure) > h2 {
+  flex: 0 0 auto;
+}
+
+.reveal .slides section.slide:not(.prompt-output):not(.title-slide):not(.edge-figure):not(.background-image-slide):not(.full-figure) > h2 + * {
+  margin-top: auto;
+}
+
+.reveal .slides section.slide:not(.prompt-output):not(.title-slide):not(.edge-figure):not(.background-image-slide):not(.full-figure) > *:has(+ aside.notes) {
+  margin-bottom: auto;
+}
+
+/* Title picture: a figure central to the talk on the right of the title block. */
+.reveal .slides section.title-slide[style*="display: block"] {
+  display: flex !important;
+  justify-content: center;
+}
+
+.reveal .slides section.title-slide .title-kicker,
+.reveal .slides section.title-slide .title-heading,
+.reveal .slides section.title-slide .title-subtitle {
+  max-width: 52%;
+}
+
+.title-art {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 640px;
+}
+
+.title-art p,
+.title-art .cell,
+.title-art figure {
+  margin: 0;
+}
+
+.title-art img {
+  display: block;
+  width: 100%;
 }

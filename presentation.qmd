@@ -145,6 +145,17 @@ spict <- if (identical(cfg$data$adapter, "spict")) {
 ## {#title-slide .title-slide}
 <!-- catalogue:start title-slide -->
 
+::: {.title-art}
+```{r}
+#| label: plot-title-art
+#| fig-width: 7
+#| fig-height: 5.6
+#| out-width: 100%
+#| fig-alt: "Polar stereographic map of the Arctic Ocean with bathymetry."
+arctic_map
+```
+:::
+
 ::: {.title-kicker}
 `r cfg$project$meeting`
 :::
@@ -170,7 +181,7 @@ spict <- if (identical(cfg$data$adapter, "spict")) {
 :::
 
 ::: {.notes}
-Open with the purpose of the presentation in one sentence. State whether the audience is being asked to decide, discuss, or simply understand something.
+Open with the purpose of the presentation in one sentence. Replace the sampler map in `.title-art` with a picture that is central to your talk, such as the study-area map or the key result figure. State whether the audience is being asked to decide, discuss, or simply understand something.
 :::
 <!-- catalogue:end title-slide -->
 
@@ -213,7 +224,7 @@ Use `.process-flow` when the order or causal relationship among three stages is 
 <!-- catalogue:end process-flow -->
 
 <!-- catalogue:start provenance-grid -->
-## Results can be traced from analysis inputs to the rendered presentation {#provenance-grid .provenance-grid data-section="Workflow"}
+## Every result traces back to its analysis input {#provenance-grid .provenance-grid data-section="Workflow"}
 
 :::: {.provenance-grid-body}
 ::: {.card}
@@ -301,7 +312,7 @@ Use `.metric-grid` only for comparable quantities that support one interpretatio
 <!-- catalogue:end metric-grid -->
 
 <!-- catalogue:start text-figure -->
-## The fitted trajectories provide the main evidence for the interpretation {#text-figure .text-figure data-section="Results"}
+## The fitted trajectories carry the main evidence {#text-figure .text-figure data-section="Results"}
 
 :::: {.text-figure-grid}
 ::: {.text-panel}
@@ -491,7 +502,7 @@ Use `.diagnostic-grid` for aligned small multiples. The figures, not explanatory
 <!-- catalogue:end diagnostic-grid -->
 
 <!-- catalogue:start emphasis-styles -->
-## Different text treatments distinguish limitations from interpretations and deadlines {#emphasis-styles data-section="Authoring reference"}
+## Text styles separate limitations, interpretations and deadlines {#emphasis-styles data-section="Authoring reference"}
 
 ::: {.alert-box}
 Use `.alert-box` for an important limitation or risk.
@@ -515,7 +526,7 @@ These are modifiers rather than slide layouts. Apply them selectively so their d
 <!-- catalogue:end emphasis-styles -->
 
 <!-- catalogue:start edge-figure -->
-## Arctic geography determines where the available observations can support inference {#edge-figure .edge-figure data-section="Results"}
+## Arctic geography limits where observations support inference {#edge-figure .edge-figure data-section="Results"}
 
 ::: {.edge-figure-text}
 - The map extends to the slide edge so the geographic evidence remains legible.
@@ -542,7 +553,7 @@ Use `.edge-figure` for a tall or square figure that fills the right half of the 
 <!-- catalogue:end edge-figure -->
 
 <!-- catalogue:start figure-swap -->
-## A fixed comparison frame makes differences between two figure variants easier to see {#figure-swap .figure-swap data-section="Authoring reference"}
+## A fixed frame makes two figure variants easy to compare {#figure-swap .figure-swap data-section="Authoring reference"}
 
 ::: {.r-stack}
 ::: {.fragment .fade-out fragment-index=1}
@@ -628,7 +639,7 @@ Synchronize each text fragment and figure with the same index. Every intermediat
 <!-- catalogue:end figure-walkthrough -->
 
 <!-- catalogue:start concept-image -->
-## A representative figure helps the audience connect an abstract model to its observable components {#concept-image .concept-image data-section="Explanation"}
+## A representative figure makes an abstract model concrete {#concept-image .concept-image data-section="Explanation"}
 
 :::: {.concept-image-grid}
 ::: {.concept-text}
@@ -660,7 +671,7 @@ Use `.concept-image` when a photograph, schematic, map, or representative scient
 <!-- catalogue:end concept-image -->
 
 <!-- catalogue:start table-figure -->
-## Exact scenario values can be checked against the corresponding trend {#table-figure .table-figure data-section="Results"}
+## Exact scenario values sit beside the trend {#table-figure .table-figure data-section="Results"}
 
 :::: {.table-figure-grid}
 ::: {.table-panel .table-medium}
@@ -698,7 +709,7 @@ Use `.table-figure` when the table provides exact values and the figure provides
 <!-- catalogue:end table-figure -->
 
 <!-- catalogue:start wide-figure -->
-## Uncertainty and axis labels remain legible when the figure occupies most of the slide {#wide-figure .wide-figure data-section="Results"}
+## A wide figure keeps uncertainty and labels legible {#wide-figure .wide-figure data-section="Results"}
 
 :::: {.wide-figure-grid}
 ::: {.text-panel}
@@ -723,7 +734,7 @@ Use `.wide-figure` when a dense chart needs nearly the full slide width. Remove 
 <!-- catalogue:end wide-figure -->
 
 <!-- catalogue:start map-context -->
-## Station distribution shows which geographic areas contribute to the estimate {#map-context .map-context data-section="Results"}
+## Station distribution shows which areas drive the estimate {#map-context .map-context data-section="Results"}
 
 :::: {.map-context-grid}
 ::: {.text-panel}
@@ -762,12 +773,12 @@ Use `.map-context` for a geographic result with a short interpretation. The samp
 <!-- catalogue:end map-context -->
 
 <!-- catalogue:start full-figure -->
-## The overall time-series shape is the evidence and therefore occupies the content area {#full-figure .full-figure data-section="Results"}
+## The time-series shape is the evidence, so it fills the slide {#full-figure .full-figure data-section="Results"}
 
 ```{r}
 #| label: plot-full-figure
 #| fig-width: 13.2
-#| fig-height: 5.7
+#| fig-height: 5.1
 #| out-width: 100%
 x <- seq(0, 1, length.out = 80)
 y <- 0.35 + 0.5 * x + 0.07 * sin(10 * x)
@@ -786,7 +797,7 @@ Use `.full-figure` when the figure itself carries the full assertion. Avoid over
 <!-- catalogue:end full-figure -->
 
 <!-- catalogue:start background-image -->
-## A contextual background image can support a short message without competing with it {#background-image .background-image-slide background-image="assets/generated/background-image.png" background-size="cover" background-position="center"}
+## A background image supports a short message {#background-image .background-image-slide background-image="assets/generated/background-image.png" background-size="cover" background-position="center"}
 
 ::: {.background-copy}
 ::: {.title-kicker}
@@ -808,7 +819,7 @@ Maintain sufficient contrast and avoid placing data-dense content over the image
 <!-- catalogue:end background-image -->
 
 <!-- catalogue:start custom-figure-font -->
-## A bundled figure font keeps occasional annotations reproducible across systems {#custom-figure-font .custom-figure-font data-section="Authoring reference"}
+## A bundled figure font keeps annotations reproducible {#custom-figure-font .custom-figure-font data-section="Authoring reference"}
 
 :::: {.text-figure-grid}
 ::: {.text-panel}
@@ -873,7 +884,7 @@ Use `.figure-tabs` when several parallel figures (one per fleet, survey, or scen
 <!-- catalogue:end figure-tabs -->
 
 <!-- catalogue:start table-density -->
-## Named table-density modifiers preserve readable text across different column counts {#table-density data-section="Authoring reference"}
+## Table-density modifiers keep wide tables readable {#table-density data-section="Authoring reference"}
 
 ::: {.columns}
 ::: {.column width="49%"}
@@ -922,7 +933,7 @@ knitr::kable(
 <!-- catalogue:end table-density -->
 
 <!-- catalogue:start scenario-table -->
-## A focused scenario table supports direct comparison of the exact values {#scenario-table .scenario-table data-section="Results"}
+## A focused table compares exact scenario values {#scenario-table .scenario-table data-section="Results"}
 
 ::: {.table-medium}
 ```{r}
@@ -944,7 +955,7 @@ Use `.scenario-table` for a small number of scenarios and retain only the column
 <!-- catalogue:end scenario-table -->
 
 <!-- catalogue:start conclusion-figure -->
-## The principal finding and its implication should remain visible during discussion {#conclusion-figure .conclusion-figure data-section="Conclusion"}
+## The main finding stays visible during discussion {#conclusion-figure .conclusion-figure data-section="Conclusion"}
 
 :::: {.conclusion-figure-grid}
 ::: {.conclusion-text}
@@ -982,7 +993,7 @@ Use `.conclusion-figure` to keep the main conclusion and its supporting visual v
 <!-- catalogue:end conclusion-figure -->
 
 <!-- catalogue:start conclusion-cards -->
-## The conclusions can sit on white cards above a graphic that closes the story {#conclusion-cards .conclusion-cards background-image="assets/generated/conclusion-background.png" background-size="contain" background-position="bottom"}
+## Conclusion cards sit above a closing graphic {#conclusion-cards .conclusion-cards background-image="assets/generated/conclusion-background.png" background-size="contain" background-position="bottom"}
 
 :::: {.conclusion-cards-grid}
 ::: {.conclusion-card}
